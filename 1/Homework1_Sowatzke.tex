@@ -1,0 +1,36 @@
+\documentclass[fleqn]{article}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{amsmath, nccmath, bm}
+\usepackage{amssymb}
+\usepackage{enumitem}
+
+\newcommand{\zerodisplayskip}{
+	\setlength{\abovedisplayskip}{0pt}%
+	\setlength{\belowdisplayskip}{0pt}%
+	\setlength{\abovedisplayshortskip}{0pt}%
+	\setlength{\belowdisplayshortskip}{0pt}%
+	\setlength{\mathindent}{0pt}}
+	
+\title{Homework 1}
+\author{Owen Sowatzke}
+\date{February 7, 2024}
+
+\begin{document}
+
+	\offinterlineskip
+	\setlength{\lineskip}{12pt}
+	\zerodisplayskip
+	\maketitle
+	
+	\begin{enumerate}
+		\item Let $\mathbf{\Sigma_1}$ and $\mathbf{\Sigma_2}$ be two symmetric, positive definite matrices. Let $\mathbf{\Delta}$ be a diagonal mattrix containing the eigenvalues of $\mathbf{\Sigma_1^{-1}}\mathbf{\Sigma_2}$. Let $\mathbf{A}$ contain the corresponding eigenvector of $\mathbf{\Sigma_1^{-1}}\mathbf{\Sigma_2}$ as its rows in the same order as the eigenvalue order in $\mathbf{\Sigma}$. Prove that
+		
+		\begin{equation*}
+			\mathbf{A\Sigma_1A^T} = I\quad\text{(Identity)}
+		\end{equation*}
+		
+		\begin{equation*}
+			\mathbf{A\Sigma_2A^T} = \Delta\quad\text{(Identity)}
+		\end{equation*}
+	\end{enumerate}
+\end{document}
