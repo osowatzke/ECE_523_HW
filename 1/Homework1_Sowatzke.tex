@@ -23,14 +23,22 @@
 	\maketitle
 	
 	\begin{enumerate}
-		\item Let $\mathbf{\Sigma_1}$ and $\mathbf{\Sigma_2}$ be two symmetric, positive definite matrices. Let $\mathbf{\Delta}$ be a diagonal mattrix containing the eigenvalues of $\mathbf{\Sigma_1^{-1}}\mathbf{\Sigma_2}$. Let $\mathbf{A}$ contain the corresponding eigenvector of $\mathbf{\Sigma_1^{-1}}\mathbf{\Sigma_2}$ as its rows in the same order as the eigenvalue order in $\mathbf{\Sigma}$. Prove that
+		\item Let $\mathbf{\Sigma_1}$ and $\mathbf{\Sigma_2}$ be two symmetric, positive definite matrices. Let $\mathbf{\Delta}$ be a diagonal matrix containing the eigenvalues of $\mathbf{\Sigma_1^{-1}}\mathbf{\Sigma_2}$. Let $\mathbf{A}$ contain the corresponding eigenvector of $\mathbf{\Sigma_1^{-1}}\mathbf{\Sigma_2}$ as its rows in the same order as the eigenvalue order in $\mathbf{\Sigma}$. Prove that
 		
 		\begin{equation*}
-			\mathbf{A\Sigma_1A^T} = I\quad\text{(Identity)}
+			\mathbf{A\Sigma_1A^T} = \mathbf{I}\quad\text{(Identity)}
 		\end{equation*}
 		
 		\begin{equation*}
-			\mathbf{A\Sigma_2A^T} = \Delta\quad\text{(Identity)}
+			\mathbf{A\Sigma_2A^T} = \mathbf{\Delta}\quad\text{(Diagonal)}
+		\end{equation*}
+		
+		\begin{equation*}
+			\mathbf{A\Sigma_1^{-1}\Sigma_2A^T = \Delta}
+		\end{equation*}
+		
+		\begin{equation*}
+			\mathbf{\Sigma_2A^T = \Sigma_1A^T\Delta}
 		\end{equation*}
 		
 		\item Consider two symmetric positive semi-definite matrices $\mathbf{\Sigma_1}$ and $\mathbf{\Sigma_2}$ of size $N \times N$. Let $\mathbf{P}$ be a $N \times N$ matrix such that
@@ -40,5 +48,19 @@
 		\end{equation*}
 		
 		If we define $\mathbf{A} = \mathbf{P}\mathbf{\Sigma_1}\mathbf{P^T}$ and $\mathbf{B} = \mathbf{P}\mathbf{\Sigma_2}\mathbf{P^T}$, then determine the properties of the eigenvalues of $\mathbf{A}$ and $\mathbf{B}$.
+		
+		\item skip
+		
+		\item Expand $(\mathbf{A} + \mathbf{B})(\mathbf{A} - \mathbf{B})$ and $(\mathbf{A} - \mathbf{B})(\mathbf{A} + \mathbf{B})$. Are these expressions the same? If not, why not?
+		
+		\begin{equation*}
+		(\mathbf{A} + \mathbf{B})(\mathbf{A} - \mathbf{B}) = \mathbf{A^2} + \mathbf{B}\mathbf{A} - \mathbf{A}\mathbf{B} - \mathbf{B^2}
+		\end{equation*}
+		
+		\begin{equation*}
+		(\mathbf{A} - \mathbf{B})(\mathbf{A} + \mathbf{B}) = \mathbf{A^2} - \mathbf{B}\mathbf{A} + \mathbf{A}\mathbf{B} - \mathbf{B^2}
+		\end{equation*}
+		
+		The above expressions are not the same because matrix multiplication is not always commutative ($\mathbf{AB} \neq \mathbf{BA}$).
 	\end{enumerate}
 \end{document}
