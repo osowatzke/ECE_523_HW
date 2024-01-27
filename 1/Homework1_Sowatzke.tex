@@ -49,7 +49,11 @@
 		
 		If we define $\mathbf{A} = \mathbf{P}\mathbf{\Sigma_1}\mathbf{P^T}$ and $\mathbf{B} = \mathbf{P}\mathbf{\Sigma_2}\mathbf{P^T}$, then determine the properties of the eigenvalues of $\mathbf{A}$ and $\mathbf{B}$.
 		
-		\item skip
+		\item Assume that $\mathbf{A}$ and $\mathbf{B}$ are two matrices of size $N \times N$, and that the inverse of $\mathbf{B}$ exists. Find the column vector $\mathbf{h}$ of length $N$ which maximizes the ratio
+		
+		\begin{equation*}
+			J(\mathbf{h}) = \frac{\mathbf{h}^T\mathbf{A}\mathbf{h}}{\mathbf{h}^T\mathbf{B}\mathbf{h}}
+		\end{equation*}
 		
 		\item Expand $(\mathbf{A} + \mathbf{B})(\mathbf{A} - \mathbf{B})$ and $(\mathbf{A} - \mathbf{B})(\mathbf{A} + \mathbf{B})$. Are these expressions the same? If not, why not?
 		
