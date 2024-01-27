@@ -64,5 +64,26 @@
 		The above expressions are not the same because matrix multiplication is not always commutative ($\mathbf{AB} \neq \mathbf{BA}$).
 		
 		\item Let $\mathbf{x_i}$, $1 \leq i \leq N$ represent a set of column vectors, and $\mathbf{m} = \frac{1}{N}\sum_{i=1}^{N}{\mathbf{x_i}}$ their average. Show that $\frac{1}{N}\sum_{i=1}^{N}\left[(\mathbf{x_i}-\mathbf{m})^T(\mathbf{x_i}-\mathbf{m})\right] = \left[\frac{1}{N}\sum_{i=1}^{N}{\mathbf{x_i}^T\mathbf{x_i}}\right]-\mathbf{m}^T\mathbf{m}$
+		
+		\begin{equation*}
+			\frac{1}{N}\sum_{i=1}^{N}\left[(\mathbf{x_i}-\mathbf{m})^T(\mathbf{x_i}-\mathbf{m})\right] = \frac{1}{N}\sum_{i=1}^{N}\left[(\mathbf{x_i}^T-\mathbf{m}^T)(\mathbf{x_i}-\mathbf{m})\right]
+		\end{equation*}
+			
+		\begin{equation*}
+			 = \frac{1}{N}\sum_{i=1}^{N}\left[\mathbf{x_i}^T\mathbf{x_i}-\mathbf{m}^T\mathbf{x_i}-\mathbf{x_i}^T\mathbf{m}+\mathbf{m}^T\mathbf{m}\right]
+		\end{equation*}
+		
+		\begin{equation*}
+			 = \frac{1}{N}\sum_{i=1}^{N}{\mathbf{x_i}^T\mathbf{x_i}}-\frac{1}{N}\sum_{i=1}^{N}{\mathbf{m}^T\mathbf{x_i}}-\frac{1}{N}\sum_{i=1}^{N}{\mathbf{x_i}^T\mathbf{m}}+\frac{1}{N}\sum_{i=1}^{N}{\mathbf{m}^T\mathbf{m}}
+		\end{equation*}
+				
+		\begin{equation*}
+			 = \frac{1}{N}\sum_{i=1}^{N}{\mathbf{x_i}^T\mathbf{x_i}}-\mathbf{m}^T\left(\frac{1}{N}\sum_{i=1}^{N}{\mathbf{x_i}}\right)-\left(\frac{1}{N}\sum_{i=1}^{N}{\mathbf{x_i}}\right)^T\mathbf{m}+\mathbf{m}^T\mathbf{m}
+		\end{equation*}
+		
+		\begin{equation*}
+			 = \frac{1}{N}\sum_{i=1}^{N}{\mathbf{x_i}^T\mathbf{x_i}}-\mathbf{m}^T\mathbf{m}-\mathbf{m}^T\mathbf{m}+\mathbf{m}^T\mathbf{m} = \frac{1}{N}\sum_{i=1}^{N}{\mathbf{x_i}^T\mathbf{x_i}}-\mathbf{m}^T\mathbf{m}
+		\end{equation*}
+		
 		\end{enumerate}
 \end{document}
