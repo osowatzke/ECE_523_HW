@@ -176,5 +176,17 @@
 		\begin{equation*}		
 			\text{exp}\left\{-\frac{1}{2(1-\rho^2)}\left[\frac{(x-\mu_x)^2}{\sigma_x^2}-\frac{2\rho(x-\mu_x)(y-\mu_y)}{\sigma_x\sigma_y}+\frac{\rho^2(y-\mu_y)^2}{\sigma_y^2}\right]\right\}
 		\end{equation*}
+		
+		\item Here, the classifier has to choose between two classes "target present" and "target absent" by looking at two received values namely $r_1$ and $r_2$. Receive value $r_i$ is the sume of the transmitted value $s_i$ and noise in the channel $n_i$. Thus,
+		
+		$r_i = s_i + n_i$,\quad$i=1,2$
+		
+		The transmitter sends $[0 \: 0]^T$ when "target is absent". In this problem, you have to tell the transmitter whether it should send $[1 \: -1]^T$ or $[1 \: 1]^T$ as the vector for "target present". The objective is to minimize the probability of error. The noise samples $n_1$ and $n_2$ are bi-variate Gaussian with zero mean and unit variance. Assume that $P(\text{Target Present}) = 0.5$.
+		
+		\begin{enumerate}
+			\item[(a)] Which of the two vectors $[1 \: -1]^T$ or $[1 \: 1]^T$ should denote "target present" if the two noise samples are uncorrelated? Explain why?
+			
+			\item[(b)] Which of the two vectors $[1 \: -1]^T$ or $[1 \: 1]^T$ should denote "target present" if the two noise samples have a correlation coefficient of $\rho = 0.5$? Explain why?
+		\end{enumerate}
 	\end{enumerate}
 \end{document}
