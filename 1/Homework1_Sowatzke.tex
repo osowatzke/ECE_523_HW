@@ -160,5 +160,21 @@
 		$E\{x\} = \mu_x$,\quad$E\{y\} = \mu_y$,\quad$Var\{x\} = \sigma_x^2$,\quad Correlation coefficient $ = \rho$
 		
 		Determine the conditional PDF $p(y|x)$
+		
+		\begin{equation*}		
+			p(y|x) = \frac{p(x,y)}{p(y)}
+		\end{equation*}
+		
+		\begin{equation*}
+			 = \frac{\frac{1}{2\pi\sigma_x\sigma_y\sqrt{1-\rho^2}}\text{exp}\left\{-\frac{1}{2(1-\rho^2)}\left[\frac{(x-\mu_x)^2}{\sigma_x^2}-\frac{2\rho(x-\mu_x)(y-\mu_y)}{\sigma_x\sigma_y}+\frac{(y-\mu_y)^2}{\sigma_y^2}\right]\right\}}{\frac{1}{\sigma_y\sqrt{2\pi}}\text{exp}\left\{-\frac{(y-\mu_y)^2}{2\sigma_y^2}\right\}}
+		\end{equation*}
+		
+		\begin{equation*}
+			= \frac{1}{\sigma_x\sqrt{2\pi(1-\rho^2)}} \times
+		\end{equation*}
+	
+		\begin{equation*}		
+			\text{exp}\left\{-\frac{1}{2(1-\rho^2)}\left[\frac{(x-\mu_x)^2}{\sigma_x^2}-\frac{2\rho(x-\mu_x)(y-\mu_y)}{\sigma_x\sigma_y}+\frac{\rho^2(y-\mu_y)^2}{\sigma_y^2}\right]\right\}
+		\end{equation*}
 	\end{enumerate}
 \end{document}
