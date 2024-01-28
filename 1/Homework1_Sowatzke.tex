@@ -56,11 +56,79 @@
 		\end{equation*}
 		
 		\begin{equation*}
+			\mathbf{h}^T\mathbf{A}\mathbf{h} = \begin{bmatrix}h_1 & \cdots & h_N\end{bmatrix}\begin{bmatrix}a_{11} & \cdots & a_{1N} \\ \vdots & \ddots & \vdots \\ a_{N1} & \cdots & a_{NN}\end{bmatrix}\begin{bmatrix}h_1 \\ \vdots \\ h_N \end{bmatrix}
+		\end{equation*}
+		
+		\begin{equation*}
+			= \begin{bmatrix}h_1 & \cdots & h_N\end{bmatrix}\begin{bmatrix}a_{11}h_1 + \cdots + a_{1N}h_N \\ \vdots \\ a_{N1}h_1 + \cdots + a_{NN}h_N\end{bmatrix}
+		\end{equation*}
+		
+		\begin{equation*}
+			= h_1(a_{11}h_1 + \cdots + a_{1N}h_N) + \cdots + h_N( a_{N1}h_1 + \cdots + a_{NN}h_N)
+		\end{equation*}
+		
+		\begin{equation*}
+			\frac{\partial}{\partial{h_1}}\left(\mathbf{h}^T\mathbf{A}\mathbf{h}\right) = 2a_{11}h_1 + a_{12}h_2 + \cdots a_{1N}h_N + a_{21}h_2 + \cdots a_{N1}h_N
+		\end{equation*}
+		
+		\begin{equation*}
+			= a_{11}h_1 + \cdots a_{1N}h_N + a_{11}h_1 + \cdots a_{N1}h_N = \mathbf{a_{1.}h} + \mathbf{h^Ta_{.1}}
+		\end{equation*}
+		
+		\begin{equation*}
+			\frac{\partial{J(\mathbf{h})}}{\partial{h_1}} = \frac{(\mathbf{a_{1.}h} + \mathbf{h^Ta_{.1}})\mathbf{h}^T\mathbf{B}\mathbf{h} - \mathbf{h}^T\mathbf{A}\mathbf{h}(\mathbf{b_{1.}h} + \mathbf{h^Tb_{.1}})}{(\mathbf{h}^T\mathbf{B}\mathbf{h})^2}
+		\end{equation*}
+		
+		\begin{equation*}
 			\nabla_{\mathbf{h}}{J} = \frac{\partial{J(\mathbf{h})}}{\partial\mathbf{h}} = \begin{bmatrix}
 				\frac{\partial{J(\mathbf{h})}}{\partial{h_1}} \\
 				\vdots \\
 				\frac{\partial{J(\mathbf{h})}}{\partial{h_N}}
 			\end{bmatrix}
+		\end{equation*}
+		
+		\begin{equation*}
+			 = \frac{1}{(\mathbf{h}^T\mathbf{B}\mathbf{h})^2}\begin{bmatrix}
+				(\mathbf{a_{1.}h} + \mathbf{h^Ta_{.1}})\mathbf{h}^T\mathbf{B}\mathbf{h} - \mathbf{h}^T\mathbf{A}\mathbf{h}(\mathbf{b_{1.}h} + \mathbf{h^Tb_{.1}}) \\
+				\vdots \\
+				(\mathbf{a_{N.}h} + \mathbf{h}^T\mathbf{a_{.N}})\mathbf{h}^T\mathbf{B}\mathbf{h} - \mathbf{h}^T\mathbf{A}\mathbf{h}(\mathbf{b_{N.}h} + \mathbf{h}^T\mathbf{b_{.N}})
+			\end{bmatrix}
+		\end{equation*}
+		
+		\begin{equation*}
+			 = \frac{1}{(\mathbf{h}^T\mathbf{B}\mathbf{h})^2}\left(\left(\mathbf{Ah} + \left(\mathbf{h}^T\mathbf{A}\right)^T\right)\mathbf{h}^T\mathbf{B}\mathbf{h} - \left(\mathbf{Bh} + \left(\mathbf{h}^T\mathbf{B}\right)^T\right)\mathbf{h}^T\mathbf{A}\mathbf{h}\right)
+		\end{equation*}
+		
+		\begin{equation*}
+			 = \frac{1}{(\mathbf{h}^T\mathbf{B}\mathbf{h})^2}\left(\left(\mathbf{Ah} + \mathbf{A}^T\mathbf{h}\right)\mathbf{h}^T\mathbf{B}\mathbf{h} - \left(\mathbf{Bh} + \mathbf{B}^T\mathbf{h}\right)\mathbf{h}^T\mathbf{A}\mathbf{h}\right)
+		\end{equation*}
+		
+		\begin{equation*}
+			 = \frac{1}{(\mathbf{h}^T\mathbf{B}\mathbf{h})^2}\left(\left(\mathbf{A} + \mathbf{A}^T\right)\mathbf{h}\mathbf{h}^T\mathbf{B}\mathbf{h} - \left(\mathbf{B} + \mathbf{B}^T\right)\mathbf{h}\mathbf{h}^T\mathbf{A}\mathbf{h}\right)
+		\end{equation*}
+		
+		\begin{equation*}
+			\left(\mathbf{A} + \mathbf{A}^T\right)\mathbf{h}\mathbf{h}^T\mathbf{B}\mathbf{h} = \left(\mathbf{B} + \mathbf{B}^T\right)\mathbf{h}\mathbf{h}^T\mathbf{A}\mathbf{h}
+		\end{equation*}
+		
+		\begin{equation*}
+			N(h_1) = (a_{11}h_1 + \cdots a_{1N}h_N + a_{11}h_1 + \cdots a_{N1}h_N)
+		\end{equation*}
+		
+		\begin{equation*}
+			\cdot [h_1(b_{11}h_1 + \cdots + b_{1N}h_N) + \cdots + h_N( b_{N1}h_1 + \cdots + b_{NN}h_N)]
+		\end{equation*}
+		
+		\begin{equation*}
+			- [h_1(a_{11}h_1 + \cdots + a_{1N}h_N) + \cdots + h_N( a_{N1}h_1 + \cdots + a_{NN}h_N)]
+		\end{equation*}
+		
+		\begin{equation*}
+			\cdot (b_{11}h_1 + \cdots b_{1N}h_N + b_{11}h_1 + \cdots b_{N1}h_N)
+		\end{equation*}\\
+		
+		\begin{equation*}
+			\frac{\partial{J(\mathbf{h})}}{\partial{h_1}} = \frac{(a_{11}h_1 + \cdots a_{1N}h_N + a_{11}h_1 + \cdots a_{N1}h_N)[h_1(b_{11}h_1 + \cdots + b_{1N}h_N) + \cdots + h_N( b_{N1}h_1 + \cdots + b_{NN}h_N)]}{[h_1(b_{11}h_1 + \cdots + b_{1N}h_N) + \cdots + h_N( b_{N1}h_1 + \cdots + b_{NN}h_N)]^2}
 		\end{equation*}
 		
 		\item Expand $(\mathbf{A} + \mathbf{B})(\mathbf{A} - \mathbf{B})$ and $(\mathbf{A} - \mathbf{B})(\mathbf{A} + \mathbf{B})$. Are these expressions the same? If not, why not?
