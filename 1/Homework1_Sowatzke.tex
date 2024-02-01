@@ -45,7 +45,7 @@
 			\mathbf{I} = \mathbf{D}\mathbf{D}^{-1}
 		\end{equation*}
 		
-		Define $\mathbf{R}$ as the positive square root of $\mathbf{D}^{-1}$. $\mathbf{R}$ will be a diagonal matrix obtained by taking the positive square root of the entries on the main diagonal of $\mathbf{D}^{-1}$. Using the operator $\mathbf{R}$, we can express the identity matrix as follows:
+		Define $\mathbf{R}$ as the positive square root of $\mathbf{D}^{-1}$. $\mathbf{R}$ is a diagonal matrix obtained by taking the positive square root of the entries on the main diagonal of $\mathbf{D}^{-1}$. Using the operator $\mathbf{R}$, we can express the identity matrix as follows:
 		
 		\begin{equation*}
 			\mathbf{I} = \mathbf{DRR}
@@ -63,18 +63,36 @@
 			\mathbf{R}\mathbf{B}\mathbf{\Sigma_1}\mathbf{B}^T\mathbf{R}^T = (\mathbf{RB})\mathbf{\Sigma_1}(\mathbf{RB})^T = \mathbf{R}\mathbf{D}\mathbf{R}^T = \mathbf{I}
 		\end{equation*}
 		
+		If we let $\mathbf{A} = \mathbf{RB}$, we have found an $\mathbf{A}$ which will produce the following result:
+		
 		\begin{equation*}
-			\mathbf{RB\Sigma_1B^T} = \mathbf{D} 
+			\mathbf{A}\mathbf{\Sigma_1}\mathbf{A}^T = \mathbf{I}
 		\end{equation*}
 		
+		Because $\mathbf{\Sigma_1}$ is symmetric and positive, we can found such $\mathbf{A}$ for all $\mathbf{\Sigma_1}$.
 		
+		The eigenvalue-eigenvector equation for $\mathbf{\Sigma_1}^{-1}\mathbf{\Sigma_2}$ can be written as follows:
 		
 		\begin{equation*}
-			\mathbf{A\Sigma_1^{-1}\Sigma_2A^T = \Delta}
+			\mathbf{\Sigma_1}^{-1}\mathbf{\Sigma_2}\mathbf{A}^T = \mathbf{A}^T\mathbf{\Lambda}
 		\end{equation*}
 		
+		Rearranging terms, we get the following expression:
+		
 		\begin{equation*}
-			\mathbf{\Sigma_2A^T = \Sigma_1A^T\Delta}
+			\mathbf{\Sigma_2}\mathbf{A}^T = \mathbf{\Sigma_1}\mathbf{A}^T\mathbf{\Lambda}
+		\end{equation*}
+		
+		From above, we know there is a $\mathbf{A}$ such that $\mathbf{\Sigma_1}\mathbf{A}^T = \mathbf{A}^{-1}$. Substituting this value, we get the following result:
+		 
+		\begin{equation*}
+			\mathbf{\Sigma_2}\mathbf{A}^T = \mathbf{A}^{-1}\mathbf{\Lambda}
+		\end{equation*}
+		
+		Finally, after rearranging the equation, we end up with the following result:
+		
+		\begin{equation*}
+			\mathbf{A}\mathbf{\Sigma_2}\mathbf{A}^T = \mathbf{\Lambda}
 		\end{equation*}
 		
 		\item Consider two symmetric positive semi-definite matrices $\mathbf{\Sigma_1}$ and $\mathbf{\Sigma_2}$ of size $N \times N$. Let $\mathbf{P}$ be a $N \times N$ matrix such that
