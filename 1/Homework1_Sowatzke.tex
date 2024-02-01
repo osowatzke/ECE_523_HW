@@ -33,6 +33,42 @@
 			\mathbf{A\Sigma_2A^T} = \mathbf{\Delta}\quad\text{(Diagonal)}
 		\end{equation*}
 		
+		Because $\mathbf{\Sigma_1}$ is symmetric, it has orthogonal eigenvectors. Furthermore, because it is positive, its eigenvalues are all positive and nonzero. Let $\mathbf{D}$ be a diagonal matrix containing the eigenvalues $\mathbf{\Sigma_1}$, and let $\mathbf{B}$ contain the eigenvectors of $\mathbf{\Sigma_1}$ as its rows.
+		
+		\begin{equation*}
+			\mathbf{B}\mathbf{\Sigma_1}\mathbf{B}^T = \mathbf{D} 
+		\end{equation*}
+		
+		Because all the eigenvalues of $\mathbf{\Sigma_1}$ are positive and non-zero, we can invert $\mathbf{D}$ by inverting the entries on the main diagonal. Using $\mathbf{D}^{-1}$, we can express the identity matrix as follows:
+		
+		\begin{equation*}
+			\mathbf{I} = \mathbf{D}\mathbf{D}^{-1}
+		\end{equation*}
+		
+		Define $\mathbf{R}$ as the positive square root of $\mathbf{D}^{-1}$. $\mathbf{R}$ will be a diagonal matrix obtained by taking the positive square root of the entries on the main diagonal of $\mathbf{D}^{-1}$. Using the operator $\mathbf{R}$, we can express the identity matrix as follows:
+		
+		\begin{equation*}
+			\mathbf{I} = \mathbf{DRR}
+		\end{equation*}
+		
+		Furthermore since diagonal matrices commute, we can rewrite the identity matrix as follows:
+		
+		\begin{equation*}
+			\mathbf{I} = \mathbf{RDR} = \mathbf{R}\mathbf{D}\mathbf{R}^T
+		\end{equation*}
+		
+		Multiplying the left side and right side of the eigenvalue-eigenvector equation above by $\mathbf{R}$ and $\mathbf{R}^T$ respectively, we can state the following:
+		
+		\begin{equation*}
+			\mathbf{R}\mathbf{B}\mathbf{\Sigma_1}\mathbf{B}^T\mathbf{R}^T = (\mathbf{RB})\mathbf{\Sigma_1}(\mathbf{RB})^T = \mathbf{R}\mathbf{D}\mathbf{R}^T = \mathbf{I}
+		\end{equation*}
+		
+		\begin{equation*}
+			\mathbf{RB\Sigma_1B^T} = \mathbf{D} 
+		\end{equation*}
+		
+		
+		
 		\begin{equation*}
 			\mathbf{A\Sigma_1^{-1}\Sigma_2A^T = \Delta}
 		\end{equation*}
