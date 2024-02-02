@@ -263,10 +263,47 @@
 		
 		$r_i = s_i + n_i$,\quad$i=1,2$
 		
-		The transmitter sends $[0 \: 0]^T$ when "target is absent". In this problem, you have to tell the transmitter whether it should send $[1 \: -1]^T$ or $[1 \: 1]^T$ as the vector for "target present". The objective is to minimize the probability of error. The noise samples $n_1$ and $n_2$ are bi-variate Gaussian with zero mean and unit variance. Assume that $P(\text{Target Present}) = 0.5$.
+		The transmitter sends $[0 \quad 0]^T$ when "target is absent". In this problem, you have to tell the transmitter whether it should send $[1 \quad -1]^T$ or $ [1 \quad 1]^T$ as the vector for "target present". The objective is to minimize the probability of error. The noise samples $n_1$ and $n_2$ are bi-variate Gaussian with zero mean and unit variance. Assume that $P(\text{Target Present}) = 0.5$.
 		
 		\begin{enumerate}
-			\item[(a)] Which of the two vectors $[1 \: -1]^T$ or $[1 \: 1]^T$ should denote "target present" if the two noise samples are uncorrelated? Explain why?
+			\item[(a)] Which of the two vectors $[1 \quad -1]^T$ or $[1 \quad 1]^T$ should denote "target present" if the two noise samples are uncorrelated? Explain why?
+			
+			For this case, the covariance matrix for both classes is given by:
+			
+			\begin{equation*}
+				\mathbf{\Sigma} = \begin{bmatrix}
+					1 & 0 \\
+					0 & 1
+				\end{bmatrix} = \mathbf{I}
+			\end{equation*}
+			
+			Let class 1 be "target present" and class 2 be "target is absent", the decision boundary will then be given by:
+			
+			\begin{equation*}
+				g_{12}(\mathbf{r}) = \mathbf{r}^T\mathbf{\Sigma}^{-1}(\mathbf{\mu_1} - \mathbf{\mu_2}) + \frac{1}{2}\mathbf{\mu_2}^T\mathbf{\Sigma}^{-1}\mathbf{\mu_2} - \frac{1}{2}\mathbf{\mu_1}^T\mathbf{\Sigma}^{-1}\mathbf{\mu_1} = 0
+			\end{equation*}
+			
+			Let "target present" be given by $[ 1 \quad -1 ]^T$ then the decision boundary will be given by:
+			
+			\begin{equation*}
+				\Rightarrow \begin{bmatrix} r_1 & r_2 \end{bmatrix}\begin{bmatrix} 1 \\ -1 \end{bmatrix} - \frac{1}{2}\begin{bmatrix} 1 & -1 \end{bmatrix}\begin{bmatrix} 1 \\ -1 \end{bmatrix} = 0
+			\end{equation*}
+			
+			\begin{equation*}
+				\Rightarrow r_1 - r_2 - 1 = 0 \Rightarrow r_2 = r_1 - 1
+			\end{equation*}
+			
+			Let "target present" be given by $[ 1 \quad 1 ]^T$ then the decision boundary will be given by:
+			
+			\begin{equation*}
+				\Rightarrow \begin{bmatrix} r_1 & r_2 \end{bmatrix}\begin{bmatrix} 1 \\ 1 \end{bmatrix} - \frac{1}{2}\begin{bmatrix} 1 & 1 \end{bmatrix}\begin{bmatrix} 1 \\ 1 \end{bmatrix} = 0
+			\end{equation*}
+			
+			\begin{equation*}
+				\Rightarrow r_1 + r_2 - 1 = 0 \Rightarrow r_2 = -r_1 + 1
+			\end{equation*}
+			
+			The minimum error threshold when sending $[1 \quad 1]^T$ is given by:
 			
 			\item[(b)] Which of the two vectors $[1 \: -1]^T$ or $[1 \: 1]^T$ should denote "target present" if the two noise samples have a correlation coefficient of $\rho = 0.5$? Explain why?
 		\end{enumerate}
