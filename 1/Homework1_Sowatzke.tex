@@ -168,14 +168,20 @@
 		\item Expand $(\mathbf{A} + \mathbf{B})(\mathbf{A} - \mathbf{B})$ and $(\mathbf{A} - \mathbf{B})(\mathbf{A} + \mathbf{B})$. Are these expressions the same? If not, why not?
 		
 		\begin{equation*}
-		(\mathbf{A} + \mathbf{B})(\mathbf{A} - \mathbf{B}) = \mathbf{A^2} + \mathbf{B}\mathbf{A} - \mathbf{A}\mathbf{B} - \mathbf{B^2}
+		(\mathbf{A} + \mathbf{B})(\mathbf{A} - \mathbf{B}) = \mathbf{A^2} + \mathbf{B}\mathbf{A} - \mathbf{A}\mathbf{B} - \mathbf{B^2} = \mathbf{A^2} + (\mathbf{B}\mathbf{A} - \mathbf{A}\mathbf{B}) - \mathbf{B^2}
 		\end{equation*}
 		
 		\begin{equation*}
-		(\mathbf{A} - \mathbf{B})(\mathbf{A} + \mathbf{B}) = \mathbf{A^2} - \mathbf{B}\mathbf{A} + \mathbf{A}\mathbf{B} - \mathbf{B^2}
+		(\mathbf{A} - \mathbf{B})(\mathbf{A} + \mathbf{B}) = \mathbf{A^2} - \mathbf{B}\mathbf{A} + \mathbf{A}\mathbf{B} - \mathbf{B^2} = \mathbf{A^2} - (\mathbf{B}\mathbf{A} - \mathbf{A}\mathbf{B}) - \mathbf{B^2}
 		\end{equation*}
 		
-		The above expressions are not the same because matrix multiplication is not always commutative ($\mathbf{AB} \neq \mathbf{BA}$).
+		In general, matrix multiplication is not commutative.
+		
+		$\Rightarrow \mathbf{BA} \neq \mathbf{AB} \Rightarrow \mathbf{BA} - \mathbf{AB} \neq \mathbf{0}$
+		
+		$\therefore (\mathbf{A} + \mathbf{B})(\mathbf{A} - \mathbf{B}) \neq (\mathbf{A} - \mathbf{B})(\mathbf{A} + \mathbf{B})$.
+		
+		So the above expressions are not the same because matrix multiplication is not always commutative.
 		
 		\item Let $\mathbf{x_i}$, $1 \leq i \leq N$ represent a set of column vectors, and $\mathbf{m} = \frac{1}{N}\sum_{i=1}^{N}{\mathbf{x_i}}$ their average. Show that $\frac{1}{N}\sum_{i=1}^{N}\left[(\mathbf{x_i}-\mathbf{m})^T(\mathbf{x_i}-\mathbf{m})\right] = \left[\frac{1}{N}\sum_{i=1}^{N}{\mathbf{x_i}^T\mathbf{x_i}}\right]-\mathbf{m}^T\mathbf{m}$
 		
