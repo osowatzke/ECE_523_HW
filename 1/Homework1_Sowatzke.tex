@@ -432,7 +432,7 @@
 				\end{cases}
 			\end{equation*}
 			
-			Clearly, the decision threshold for this case should be $x_1^2 + x_2^2 \leq 1$.
+			Clearly, the decision threshold for this case should be $x_1^2 + x_2^2 = 1$ or $\mathbf{x}^T\mathbf{x} - 1 = 0$
 			
 			\begin{equation*}
 				P_e = P(e|\omega_1)P(\omega_1) + P(e|\omega_2)P(\omega_2) = P(e|\omega_2)P(\omega_2)
@@ -443,14 +443,16 @@
 			\end{equation*}
 			
 			\begin{equation*}
-				= 0.75\int_{\theta=0}^{2\pi}{\int_{r=0}^{1}{\left(\frac{1}{4\pi}\right)rdr}d\theta}
+				= 0.75\int_{\theta=0}^{2\pi}{\int_{r=0}^{1}{\left(\frac{1}{4\pi}\right)rdr}d\theta} = 0.75\int_{\theta=0}^{2\pi}{\left.\left(\frac{1}{8\pi}\right)r^2\right\vert_{0}^{1}d\theta}
 			\end{equation*}
 			
 			\begin{equation*}
-				= 0.75\int_{\theta=0}^{2\pi}{\int_{r=0}^{1}{\left(\frac{1}{4\pi}\right)rdr}d\theta}
+				 = 0.75\int_{\theta=0}^{2\pi}{\left(\frac{1}{8\pi}\right)d\theta} = 0.75\left.\left(\frac{1}{8\pi}\right)\theta\right\vert_{0}^{2\pi} = 0.75\left(\frac{1}{4}\right) = \frac{3}{16}
 			\end{equation*}
 			
 			\item[(ii)] Is the decision rule used in part (i) to obtain minimum $P_e$ a linear rule?
+			
+			No, the decision rule is quadratic in $\mathbf{x}$.
 		\end{enumerate}
 	\end{enumerate}
 \end{document}
