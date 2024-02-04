@@ -201,12 +201,20 @@
 		
 		\item Assume equal probability for the birth of boys and girls. What is the probability that a four-child family chosen at random will have two boys and two girls, irrespective of the order of birth?
 		
+		The probability that a family of $n$ children has $k$ boys is given by a binomial distribution, where $p$ is the probability of that any given child is a boy.
+		 
 		\begin{equation*}
-			P = \binom{n}{k}p^k(1-p)^{n-k} = \binom{4}{2}0.5^2(1-0.5)^{4-2} = \frac{4!}{2!(4-2)!}(0.5^4)
+			P(X = k) = \binom{n}{k}p^k(1-p)^{n-k}
+		\end{equation*}
+		
+		The probability that a four child family has 2 boys is then given by:
+		
+		\begin{equation*}
+			P(X = 2) = \binom{4}{2}0.5^2(1-0.5)^{4-2} = \frac{4!}{2!(4-2)!}(0.5^4) = \frac{4!}{2!2!}\frac{1}{16} 
 		\end{equation*}
 		
 		\begin{equation*}
-			 = \frac{4!}{2!2!}\frac{1}{16} = \frac{4 \cdot 3}{2}\frac{1}{16} = \frac{6}{16} = \frac{3}{8}
+			= \frac{4 \cdot 3}{2}\frac{1}{16} = \frac{6}{16} = \frac{3}{8}
 		\end{equation*}
 		
 		\item The random variables $x$ and $y$ are distributed according to the bi-variate Gaussian PDF with the following parameters:
