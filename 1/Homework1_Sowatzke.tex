@@ -259,7 +259,7 @@
 			p(y|x) = \mathcal{N}\left(\mu_y + \rho\frac{\sigma_y}{\sigma_x}(x-\mu_x),\:\sigma_y^2(1 - \rho^2)\right)
 		\end{equation*}
 		
-		\item Here, the classifier has to choose between two classes "target present" and "target absent" by looking at two received values namely $r_1$ and $r_2$. Receive value $r_i$ is the sume of the transmitted value $s_i$ and noise in the channel $n_i$. Thus,
+		\item Here, the classifier has to choose between two classes "target present" and "target absent" by looking at two received values namely $r_1$ and $r_2$. Receive value $r_i$ is the sum of the transmitted value $s_i$ and noise in the channel $n_i$. Thus,
 		
 		$r_i = s_i + n_i$,\quad$i=1,2$
 		
@@ -268,7 +268,37 @@
 		\begin{enumerate}
 			\item[(a)] Which of the two vectors $[1 \quad -1]^T$ or $[1 \quad 1]^T$ should denote "target present" if the two noise samples are uncorrelated? Explain why?
 			
-			For this case, the covariance matrix for both classes is given by:
+			The covariance matrix can be written as follows:
+			
+			\begin{equation*}
+				\mathbf{\Sigma} = \begin{bmatrix}
+					\sigma_{N_1}^2 & \text{Cov}(N_1,N_2) \\
+					\text{Cov}(N_1,N_2) & \sigma_{N_2}^2
+				\end{bmatrix}
+			\end{equation*}
+			
+			The off-diagonal elements of the covariance matrix can be written in terms of the correlation coefficient as follows:
+			 
+			\begin{equation*}
+				\rho = \frac{\text{Cov}(N_1,N_2)}{\sigma_{N_1}\sigma_{N_2}} \Rightarrow \text{Cov}(N_1,N_2) = \rho\sigma_{N_1}\sigma_{N_2} = \rho\sigma^2 = \rho
+			\end{equation*}
+			
+			Substituting the above expression, the covariance matrix can be written as follows:
+			
+			\begin{equation*}
+				\mathbf{\Sigma} = \begin{bmatrix}
+					\sigma_{N_1}^2 & \rho \\
+					\rho & \sigma_{N_2}^2
+				\end{bmatrix} = \begin{bmatrix}
+					\sigma^2 & \rho \\
+					\rho & \sigma^2
+				\end{bmatrix} = \begin{bmatrix}
+					1 & \rho \\
+					\rho & 1
+				\end{bmatrix}
+			\end{equation*}
+			
+			Because the noise samples from this part are uncorrelated $\rho = 0$ and
 			
 			\begin{equation*}
 				\mathbf{\Sigma} = \begin{bmatrix}
@@ -277,35 +307,100 @@
 				\end{bmatrix} = \mathbf{I}
 			\end{equation*}
 			
-			Let class 1 be "target present" and class 2 be "target is absent", the decision boundary will then be given by:
+			Let class 1 be "target present" and class 2 be "target is absent". For each set of transmitted values, we can compute the Mahalanobis distance between the two classes.
+			
+			For $[1 \quad 1]^T$:
 			
 			\begin{equation*}
-				g_{12}(\mathbf{r}) = \mathbf{r}^T\mathbf{\Sigma}^{-1}(\mathbf{\mu_1} - \mathbf{\mu_2}) + \frac{1}{2}\mathbf{\mu_2}^T\mathbf{\Sigma}^{-1}\mathbf{\mu_2} - \frac{1}{2}\mathbf{\mu_1}^T\mathbf{\Sigma}^{-1}\mathbf{\mu_1} = 0
-			\end{equation*}
-			
-			Let "target present" be given by $[ 1 \quad -1 ]^T$ then the decision boundary will be given by:
-			
-			\begin{equation*}
-				\Rightarrow \begin{bmatrix} r_1 & r_2 \end{bmatrix}\begin{bmatrix} 1 \\ -1 \end{bmatrix} - \frac{1}{2}\begin{bmatrix} 1 & -1 \end{bmatrix}\begin{bmatrix} 1 \\ -1 \end{bmatrix} = 0
+				(\mathbf{\mu_1} - \mathbf{\mu_2})^T\mathbf{\Sigma}^{-1}(\mathbf{\mu_1} - \mathbf{\mu_2})
 			\end{equation*}
 			
 			\begin{equation*}
-				\Rightarrow r_1 - r_2 - 1 = 0 \Rightarrow r_2 = r_1 - 1
-			\end{equation*}
-			
-			Let "target present" be given by $[ 1 \quad 1 ]^T$ then the decision boundary will be given by:
-			
-			\begin{equation*}
-				\Rightarrow \begin{bmatrix} r_1 & r_2 \end{bmatrix}\begin{bmatrix} 1 \\ 1 \end{bmatrix} - \frac{1}{2}\begin{bmatrix} 1 & 1 \end{bmatrix}\begin{bmatrix} 1 \\ 1 \end{bmatrix} = 0
+				= \left(\begin{bmatrix} 1 \\ 1 \end{bmatrix} - \begin{bmatrix} 0 \\ 0 \end{bmatrix}\right)^TI^{-1}\left(\begin{bmatrix} 1 \\ 1 \end{bmatrix} - \begin{bmatrix} 0 \\ 0 \end{bmatrix}\right) = \begin{bmatrix} 1 & 1 \end{bmatrix}\begin{bmatrix} 1 \\ 1 \end{bmatrix} = 2
 			\end{equation*}
 			
 			\begin{equation*}
-				\Rightarrow r_1 + r_2 - 1 = 0 \Rightarrow r_2 = -r_1 + 1
+				\therefore d_M = \sqrt{(\mathbf{\mu_1} - \mathbf{\mu_2})^T\mathbf{\Sigma}^{-1}(\mathbf{\mu_1} - \mathbf{\mu_2})} = \sqrt{2}
 			\end{equation*}
 			
-			The minimum error threshold when sending $[1 \quad 1]^T$ is given by:
+			For $[1 \quad -1]^T$:
+			
+			\begin{equation*}
+				(\mathbf{\mu_1} - \mathbf{\mu_2})^T\mathbf{\Sigma}^{-1}(\mathbf{\mu_1} - \mathbf{\mu_2})
+			\end{equation*}
+			
+			\begin{equation*}
+				= \left(\begin{bmatrix} 1 \\ -1 \end{bmatrix} - \begin{bmatrix} 0 \\ 0 \end{bmatrix}\right)^TI^{-1}\left(\begin{bmatrix} 1 \\ -1 \end{bmatrix} - \begin{bmatrix} 0 \\ 0 \end{bmatrix}\right) = \begin{bmatrix} 1 & -1 \end{bmatrix}\begin{bmatrix} 1 \\ -1 \end{bmatrix} = 2
+			\end{equation*}
+			
+			\begin{equation*}
+				\therefore d_M = \sqrt{(\mathbf{\mu_1} - \mathbf{\mu_2})^T\mathbf{\Sigma}^{-1}(\mathbf{\mu_1} - \mathbf{\mu_2})} = \sqrt{2}
+			\end{equation*}
+			
+			Because the Mahanalobis distance between classes is the same for each set of transmitted values, the probability of error will also be the same. $\therefore$ Either vector can denote "target present" for this case.
 			
 			\item[(b)] Which of the two vectors $[1 \: -1]^T$ or $[1 \: 1]^T$ should denote "target present" if the two noise samples have a correlation coefficient of $\rho = 0.5$? Explain why?
+			
+			The covariance matrix for this case can be written as follows:
+			
+			\begin{equation*}
+				\mathbf{\Sigma} = \begin{bmatrix}
+					1 & \rho\\
+					\rho & 1
+				\end{bmatrix} = \begin{bmatrix}
+					1 & 0.5\\
+					0.5 & 1
+				\end{bmatrix}
+			\end{equation*}
+			
+			\begin{equation*}
+				\mathbf{\Sigma}^{-1} = \frac{1}{1 - 0.5^2}\begin{bmatrix} 1 & -0.5 \\ -0.5 & 1 \end{bmatrix}
+			\end{equation*}
+			
+			\begin{equation*}
+				 = \frac{1}{3/4}\begin{bmatrix} 1 & -0.5 \\ -0.5 & 1 \end{bmatrix} = \begin{bmatrix} 4/3 & -2/3 \\ -2/3 & 4/3 \end{bmatrix}
+			\end{equation*}
+			
+			Let class 1 be "target present" and class 2 be "target is absent". For each set of transmitted values, we can compute the Mahalanobis distance between the two classes.
+			
+			For $[1 \quad 1]^T$:
+			
+			\begin{equation*}
+				(\mathbf{\mu_1} - \mathbf{\mu_2})^T\mathbf{\Sigma}^{-1}(\mathbf{\mu_1} - \mathbf{\mu_2})
+			\end{equation*}
+			
+			 \begin{equation*}
+				= \left(\begin{bmatrix} 1 \\ 1 \end{bmatrix} - \begin{bmatrix} 0 \\ 0 \end{bmatrix}\right)^T\begin{bmatrix} 4/3 & -2/3 \\ -2/3 & 4/3 \end{bmatrix}\left(\begin{bmatrix} 1 \\ 1 \end{bmatrix} - \begin{bmatrix} 0 \\ 0 \end{bmatrix}\right)
+			\end{equation*}
+			
+			\begin{equation*}
+				= \begin{bmatrix} 1 & 1 \end{bmatrix}\begin{bmatrix} 4/3 & -2/3 \\ -2/3 & 4/3 \end{bmatrix}\begin{bmatrix} 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 1 & 1 \end{bmatrix}\begin{bmatrix} 2/3 \\ 2/3 \end{bmatrix} = 4/3
+			\end{equation*}
+			
+			\begin{equation*}
+				\therefore d_M = \sqrt{(\mathbf{\mu_1} - \mathbf{\mu_2})^T\mathbf{\Sigma}^{-1}(\mathbf{\mu_1} - \mathbf{\mu_2})} = 2/\sqrt{3}
+			\end{equation*}
+			
+			For $[1 \quad -1]^T$:
+			
+			\begin{equation*}
+				(\mathbf{\mu_1} - \mathbf{\mu_2})^T\mathbf{\Sigma}^{-1}(\mathbf{\mu_1} - \mathbf{\mu_2})
+			\end{equation*}
+			
+			 \begin{equation*}
+				= \left(\begin{bmatrix} 1 \\ -1 \end{bmatrix} - \begin{bmatrix} 0 \\ 0 \end{bmatrix}\right)^T\begin{bmatrix} 4/3 & -2/3 \\ -2/3 & 4/3 \end{bmatrix}\left(\begin{bmatrix} 1 \\ -1 \end{bmatrix} - \begin{bmatrix} 0 \\ 0 \end{bmatrix}\right)
+			\end{equation*}
+			
+			\begin{equation*}
+				= \begin{bmatrix} 1 & -1 \end{bmatrix}\begin{bmatrix} 4/3 & -2/3 \\ -2/3 & 4/3 \end{bmatrix}\begin{bmatrix} 1 \\ -1 \end{bmatrix} = \begin{bmatrix} 1 & -1 \end{bmatrix}\begin{bmatrix} 2 \\ -2 \end{bmatrix} = 4
+			\end{equation*}
+			
+			\begin{equation*}
+				\therefore d_M = \sqrt{(\mathbf{\mu_1} - \mathbf{\mu_2})^T\mathbf{\Sigma}^{-1}(\mathbf{\mu_1} - \mathbf{\mu_2})} = 2
+			\end{equation*}
+			
+			Because the Mahanalobis distance between classes is greater when transmitting $[1 \quad -1]^T$, the probability of error will be smaller for this case. $\therefore [1 \quad -1]^T$ should denote "target present" for this case.
+			
 		\end{enumerate}
 	\end{enumerate}
 \end{document}
