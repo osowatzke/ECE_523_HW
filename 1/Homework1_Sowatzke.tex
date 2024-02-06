@@ -103,6 +103,50 @@
 		
 		If we define $\mathbf{A} = \mathbf{P}\mathbf{\Sigma_1}\mathbf{P^T}$ and $\mathbf{B} = \mathbf{P}\mathbf{\Sigma_2}\mathbf{P^T}$, then determine the properties of the eigenvalues of $\mathbf{A}$ and $\mathbf{B}$.
 		
+		$\mathbf{A}$ is symmetric positive semi-definite matrix if it can be written as $\mathbf{R}^T\mathbf{R}$.
+		
+		Because $\mathbf{\Sigma_1}$ is a symmetric positive semi-definite matrix, it has a positive square root $\mathbf{R_1}$ such that $\mathbf{\Sigma_1} = \mathbf{R_1}^T\mathbf{R_1}$.
+		
+		Therefore, we can rewrite $\mathbf{A}$ as follows:
+		
+		$\mathbf{A} = \mathbf{P}\mathbf{R_1}^T\mathbf{R_1}\mathbf{P}^T = (\mathbf{R_1}\mathbf{P}^T)^T(\mathbf{R_1}\mathbf{P}^T)$
+
+		Define $\mathbf{R} = \mathbf{R_1}\mathbf{P}^T$. Now, $\mathbf{A}$ can be written as $\mathbf{R}^T\mathbf{R}$, so $\mathbf{A}$ is a symmetric positive semi-definite matrix.
+		
+		By similar logic, $\mathbf{B}$ is also a positive semi-definite matrix.
+		
+		Because $\mathbf{A}$ is a positive semi-definite matrix, it can be diagonalized using a matrix of orthonormal eigenvectors ($\mathbf{V}\mathbf{A}\mathbf{V}^T = \mathbf{\Lambda_A}$).
+		
+		If we diagonalize both sides of $\mathbf{A} = \mathbf{I} - \mathbf{B}$ using $\mathbf{V}$, we get:
+		
+		$\mathbf{V}\mathbf{A}\mathbf{V}^T = \mathbf{V}(\mathbf{I} - \mathbf{B})\mathbf{V}^T$
+		
+		$\mathbf{V}\mathbf{A}\mathbf{V}^T = \mathbf{V}\mathbf{I}\mathbf{V}^T - \mathbf{V}^T\mathbf{B}\mathbf{V}^T$
+		
+		$\mathbf{V}^T\mathbf{B}\mathbf{V}^T = \mathbf{V}\mathbf{I}\mathbf{V}^T - \mathbf{V}\mathbf{A}\mathbf{V}^T$
+		
+		$\mathbf{V}^T\mathbf{B}\mathbf{V}^T = \mathbf{V}\mathbf{V}^T - \mathbf{\Lambda_A}$
+		
+		Because the columns of $\mathbf{V}$ are orthonormal, $\mathbf{V}\mathbf{V}^T = \mathbf{I}$
+		
+		$\Rightarrow \mathbf{V}^T\mathbf{B}\mathbf{V}^T = \mathbf{I} - \mathbf{\Lambda_A}$
+		
+		$\mathbf{I} - \mathbf{\Lambda_A}$ is diagonal, so $\mathbf{B}$ can be diagonalized using the same matrix of orthonormal eigenvectors.
+		
+		$\mathbf{V}\mathbf{B}\mathbf{V}^T = \mathbf{\Lambda_B}$		
+		
+		$\mathbf{V}(\mathbf{A} + \mathbf{B})\mathbf{V}^T = \mathbf{V}\mathbf{I}\mathbf{V}^T$
+		
+		$\mathbf{\Lambda_A} + \mathbf{\Lambda_B} = \mathbf{I}$.
+		
+		Using the above expression, we can conclude that
+		
+		$\lambda_{A_i} + \lambda_{B_i} = 1\quad \forall\ i = 1,...,N$
+		
+		Furthermore, because $\mathbf{A}$ and $\mathbf{B}$ are positive semi-definite matrices we can conclude that
+		
+		$\lambda_{A_i} \geq 0$ and $\lambda_{B_i} \geq 0\quad \forall\ i = 1,...,N$
+		
 		\item Assume that $\mathbf{A}$ and $\mathbf{B}$ are two matrices of size $N \times N$, and that the inverse of $\mathbf{B}$ exists. Find the column vector $\mathbf{h}$ of length $N$ which maximizes the ratio
 		
 		\begin{equation*}
