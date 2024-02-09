@@ -33,7 +33,7 @@
 			\mathbf{A\Sigma_2A^T} = \mathbf{\Delta}\quad\text{(Diagonal)}
 		\end{equation*}
 		
-		Because $\mathbf{\Sigma_1}$ is symmetric, it has orthogonal eigenvectors. Furthermore, because it is positive, its eigenvalues are all positive and nonzero. Let $\mathbf{D}$ be a diagonal matrix containing the eigenvalues $\mathbf{\Sigma_1}$, and let $\mathbf{B}$ contain the eigenvectors of $\mathbf{\Sigma_1}$ as its rows.
+		Because $\mathbf{\Sigma_1}$ is symmetric, it has orthogonal eigenvectors. Furthermore, because it is positive definite, its eigenvalues are all positive and nonzero. Let $\mathbf{D}$ be a diagonal matrix containing the eigenvalues $\mathbf{\Sigma_1}$, and let $\mathbf{B}$ contain the eigenvectors of $\mathbf{\Sigma_1}$ as its rows.
 		
 		\begin{equation*}
 			\mathbf{B}\mathbf{\Sigma_1}\mathbf{B}^T = \mathbf{D} 
@@ -69,30 +69,30 @@
 			\mathbf{A}\mathbf{\Sigma_1}\mathbf{A}^T = \mathbf{I}
 		\end{equation*}
 		
-		Because $\mathbf{\Sigma_1}$ is symmetric and positive, we can found such $\mathbf{A}$ for all $\mathbf{\Sigma_1}$.
+		Because $\mathbf{\Sigma_1}$ is symmetric and positive, we can find such $\mathbf{A}$ for all $\mathbf{\Sigma_1}$.
 		
 		The eigenvalue-eigenvector equation for $\mathbf{\Sigma_1}^{-1}\mathbf{\Sigma_2}$ can be written as follows:
 		
 		\begin{equation*}
-			\mathbf{\Sigma_1}^{-1}\mathbf{\Sigma_2}\mathbf{A}^T = \mathbf{A}^T\mathbf{\Lambda}
+			\mathbf{\Sigma_1}^{-1}\mathbf{\Sigma_2}\mathbf{A}^T = \mathbf{A}^T\mathbf{\Delta}
 		\end{equation*}
 		
 		Rearranging terms, we get the following expression:
 		
 		\begin{equation*}
-			\mathbf{\Sigma_2}\mathbf{A}^T = \mathbf{\Sigma_1}\mathbf{A}^T\mathbf{\Lambda}
+			\mathbf{\Sigma_2}\mathbf{A}^T = \mathbf{\Sigma_1}\mathbf{A}^T\mathbf{\Delta}
 		\end{equation*}
 		
 		From above, we know there is a $\mathbf{A}$ such that $\mathbf{\Sigma_1}\mathbf{A}^T = \mathbf{A}^{-1}$. Substituting this value, we get the following result:
 		 
 		\begin{equation*}
-			\mathbf{\Sigma_2}\mathbf{A}^T = \mathbf{A}^{-1}\mathbf{\Lambda}
+			\mathbf{\Sigma_2}\mathbf{A}^T = \mathbf{A}^{-1}\mathbf{\Delta}
 		\end{equation*}
 		
 		Finally, after rearranging the equation, we end up with the following result:
 		
 		\begin{equation*}
-			\mathbf{A}\mathbf{\Sigma_2}\mathbf{A}^T = \mathbf{\Lambda}
+			\mathbf{A}\mathbf{\Sigma_2}\mathbf{A}^T = \mathbf{\Delta}
 		\end{equation*}
 		
 		\item Consider two symmetric positive semi-definite matrices $\mathbf{\Sigma_1}$ and $\mathbf{\Sigma_2}$ of size $N \times N$. Let $\mathbf{P}$ be a $N \times N$ matrix such that
