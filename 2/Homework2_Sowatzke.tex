@@ -11,6 +11,8 @@
 	\setlength{\belowdisplayshortskip}{0pt}%
 	\setlength{\mathindent}{0pt}}
 	
+\newcommand{\norm}[1]{\left \lVert #1 \right \rVert}
+	
 \title{Homework 2}
 \author{Owen Sowatzke}
 \date{February 21, 2024}
@@ -28,5 +30,48 @@
 		Class 1 = $\{(0,0)^T,\:(0,1)^T\}$
 		
 		Class 2 = $\{(1,0)^T,\:(0,0.5)^T\}$
+		
+		Consider the distance between a random input sample $\mathbf{x}$ and a training sample of either Class 1 or Class 2, which we will define as $\mathbf{x_1}$ and $\mathbf{x_2}$ respectively. In the nearest neighbor method, we will classify the input sample based on which of the training samples it is closest to. The threshold, then, occurs when the input sample is equidistant from both samples of training data.
+		
+		\begin{equation*}
+			\norm{\mathbf{x} - \mathbf{x_2}} \overset{\omega_1}{\underset{\omega_2}{\gtrless}} \norm{\mathbf{x} - \mathbf{x_1}} \Rightarrow \norm{\mathbf{x} - \mathbf{x_2}}^2  \overset{\omega_1}{\underset{\omega_2}{\gtrless}} \norm{\mathbf{x} - \mathbf{x_1}}^2
+		\end{equation*}
+		
+		\begin{equation*}
+			(\mathbf{x} - \mathbf{x_2})(\mathbf{x} - \mathbf{x_2})^T \overset{\omega_1}{\underset{\omega_2}{\gtrless}} (\mathbf{x} - \mathbf{x_1})(\mathbf{x} - \mathbf{x_1})^T
+		\end{equation*}
+		
+		\begin{equation*}
+			\norm{\mathbf{x}}^2 - \mathbf{x_2}\mathbf{x}^T - \mathbf{x}\mathbf{x_2}^T + \norm{\mathbf{x_2}}^2 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} \norm{\mathbf{x}}^2 - \mathbf{x_1}\mathbf{x}^T - \mathbf{x}\mathbf{x_1}^T + \norm{\mathbf{x_1}}^2
+		\end{equation*}
+		
+		\begin{equation*}
+			- \mathbf{x_2}\mathbf{x}^T - \mathbf{x}\mathbf{x_2}^T + \norm{\mathbf{x_2}}^2 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} - \mathbf{x_1}\mathbf{x}^T - \mathbf{x}\mathbf{x_1}^T + \norm{\mathbf{x_1}}^2
+		\end{equation*}
+		
+		\begin{equation*}
+			- (\mathbf{x_2}\mathbf{x}^T)^T - \mathbf{x}\mathbf{x_2}^T + \norm{\mathbf{x_2}}^2 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} - (\mathbf{x_1}\mathbf{x}^T)^T - \mathbf{x}\mathbf{x_1}^T + \norm{\mathbf{x_1}}^2
+		\end{equation*}
+		
+		\begin{equation*}
+			- \mathbf{x}\mathbf{x_2}^T - \mathbf{x}\mathbf{x_2}^T + \norm{\mathbf{x_2}}^2 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} - \mathbf{x}\mathbf{x_1}^T - \mathbf{x}\mathbf{x_1}^T + \norm{\mathbf{x_1}}^2
+		\end{equation*}
+		
+		\begin{equation*}
+			- 2\mathbf{x}\mathbf{x_2}^T + \norm{\mathbf{x_2}}^2 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} - 2\mathbf{x}\mathbf{x_1}^T + \norm{\mathbf{x_1}}^2
+		\end{equation*}
+		
+		\begin{equation*}
+			2\mathbf{x}\mathbf{x_1}^T - 2\mathbf{x}\mathbf{x_2}^T - \norm{\mathbf{x_1}}^2 + \norm{\mathbf{x_2}}^2 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0
+		\end{equation*}
+		
+		\begin{equation*}
+			2\mathbf{x}(\mathbf{x_1}^T - \mathbf{x_2}^T) - \norm{\mathbf{x_1}}^2 + \norm{\mathbf{x_2}}^2 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0
+		\end{equation*}
+		
+		\begin{equation*}
+			2\mathbf{x}(\mathbf{x_1} - \mathbf{x_2})^T - \norm{\mathbf{x_1}}^2 + \norm{\mathbf{x_2}}^2 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0
+		\end{equation*}
+		
 	\end{enumerate}
 \end{document}
