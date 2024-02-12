@@ -97,16 +97,16 @@
 			\mathbf{\hat{x}} = \begin{bmatrix} -\mathbf{x} \\ -1 \end{bmatrix}			
 		\end{equation*}
 		
-		We can concatenate the vectors $\mathbf{\hat{x}}$ to form a matrix $\mathbf{A}$.
+		We can then form the matrix $\mathbf{A}$ from the vectors $\mathbf{\hat{x}_i}$:
 		
 		\begin{equation*}
-			\mathbf{A} = \begin{bmatrix} \mathbf{\hat{x}_1} & \cdots & \mathbf{\hat{x}_n}\end{bmatrix}					
+			\mathbf{A} = \begin{bmatrix} \mathbf{\hat{x}_1}^T \\ \vdots \\ \mathbf{\hat{x}_n}^T \end{bmatrix}					
 		\end{equation*}
 		
 		The generalized inverse of $\mathbf{A}$ is then defined as:
 		
 		\begin{equation*}
-			\mathbf{A}^{\dag} = (\mathbf{A}\mathbf{A}^T)^{-1}\mathbf{A}
+			\mathbf{A}^{\dag} = (\mathbf{A^T}\mathbf{A})^{-1}\mathbf{A}^T
 		\end{equation*}
 		
 		Using the generalized inverse $\mathbf{A}^{\dag}$, we can find the MSE vector $\mathbf{w}$.
@@ -114,5 +114,50 @@
 		\begin{equation*}
 			\mathbf{w} = \mathbf{A}^{\dag}\mathbf{b}
 		\end{equation*}
+			
+		For the provided training data, we first need to solve for the matrix $\mathbf{A}$. Doing so results in the following:
+		
+		\begin{equation*}
+			\mathbf{A} = \begin{bmatrix}
+				0  &  0 &  1 \\
+				1  &  0 &  1 \\
+				0  & -1 &  1 \\
+				0  & -1 & -1 \\
+			   -1  & -2 & -1 \\
+			    1  &  0 & -1
+			\end{bmatrix}
+		\end{equation*}
+		
+		Next, using the formula given above, we can solve for the generalized inverse $\mathbf{A}^{\dag}$, the result of this operation is given below:
+		
+		\begin{equation*}
+			\mathbf{A}^{\dag} = \begin{bmatrix} 
+			   -0.0270 &  0.4054 &  0.1081 &  0.1622 & -0.1351 &  0.4595 \\
+			   -0.0541 & -0.1892 & -0.2838 & -0.1757 & -0.2703 & -0.0811 \\
+			    0.1892 &  0.1622 &  0.2432 & -0.1351 & -0.0541 & -0.2162
+			\end{bmatrix}
+		\end{equation*}
+		
+		Finally, we can solve for the vector $\mathbf{w}$ as follows:
+		
+		\begin{equation*}
+			\mathbf{w} = \mathbf{A}^{\dag}\mathbf{b} = \begin{bmatrix} 0.9730 \\ -1.0541 \\ 0.1892 \end{bmatrix}
+		\end{equation*}
+		
+		The data is linearly separable if each element of $\mathbf{A}\mathbf{w}$ is greater than zero.
+		
+		\begin{equation*}
+			\mathbf{A}\mathbf{w} = \begin{bmatrix}
+				0.1892 \\
+    				1.1622 \\
+   	 			1.2432 \\
+    				0.8649 \\
+    				0.9459 \\
+    				0.7838
+			\end{bmatrix}
+		\end{equation*}
+		
+		Because each element of $\mathbf{A}\mathbf{w}$ is greater than zero, the data is linearly separable.
+		
 	\end{enumerate}
 \end{document}
