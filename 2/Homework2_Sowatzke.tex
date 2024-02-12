@@ -77,5 +77,42 @@
 		
 		Use the perceptron criterion method with $\rho_k = 1$ to determine the solution vector $\mathbf{w}$. Use an all zero vector as the starting point for $\mathbf{w}$. Show the $\mathbf{w}$ vector after each iteration.
 		
+		\item Consider the following training data:
+		
+		Class $\omega_1 = [(0,0)^T\quad(1,0)^T\quad(0,-1)^T]$
+		
+		Class $\omega_2 = [(0,1)^T\quad(1,2)^T\quad(-1,0)^T]$
+		
+		Determine the MSE vector $\mathbf{w}$ if $\mathbf{b} = [1\:1\:1\:1\:1\:1]^T$. Use the generalized inverse to find the solution vector. Is the data linearly separable?
+		
+		For each sample of training data $\mathbf{x}$. Define the vector $\mathbf{\hat{x}}$ as follows:
+		
+		\begin{equation*}
+			\mathbf{\hat{x}} = \begin{bmatrix} \mathbf{x} \\ 1 \end{bmatrix}			
+		\end{equation*}
+		
+		For each sample $\mathbf{x}$ contained in class $\omega_2$, we need to multiply the vector $\mathbf{\hat{x}}$ by $-1$. After performing this multiplication, the definition for $\mathbf{\hat{x}}$  for samples in class $\omega_2$ is given by:
+		
+		\begin{equation*}
+			\mathbf{\hat{x}} = \begin{bmatrix} -\mathbf{x} \\ -1 \end{bmatrix}			
+		\end{equation*}
+		
+		We can concatenate the vectors $\mathbf{\hat{x}}$ to form a matrix $\mathbf{A}$.
+		
+		\begin{equation*}
+			\mathbf{A} = \begin{bmatrix} \mathbf{\hat{x}_1} & \cdots & \mathbf{\hat{x}_n}\end{bmatrix}					
+		\end{equation*}
+		
+		The generalized inverse of $\mathbf{A}$ is then defined as:
+		
+		\begin{equation*}
+			\mathbf{A}^{\dag} = (\mathbf{A}\mathbf{A}^T)^{-1}\mathbf{A}
+		\end{equation*}
+		
+		Using the generalized inverse $\mathbf{A}^{\dag}$, we can find the MSE vector $\mathbf{w}$.
+		
+		\begin{equation*}
+			\mathbf{w} = \mathbf{A}^{\dag}\mathbf{b}
+		\end{equation*}
 	\end{enumerate}
 \end{document}
