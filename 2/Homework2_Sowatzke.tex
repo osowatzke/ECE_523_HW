@@ -69,18 +69,12 @@
 			2\mathbf{x}^T(\mathbf{x_1} - \mathbf{x_2}) - \norm{\mathbf{x_1}}^2 + \norm{\mathbf{x_2}}^2 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0
 		\end{equation*}
 		
-		We start by finding the boundary conditions between the first sample of class 1 and the remaining samples of both classes.
-		
-		Boundary between $(0,0)^T$ and $(0,1)^T$:
-		
-		\begin{equation*}
-			2 \begin{bmatrix} x & y \end{bmatrix} \begin{bmatrix}0\\ -1\end{bmatrix} - 0 + 1 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow -2y + 1 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow 2y \overset{\omega_2}{\underset{\omega_1}{\gtrless}} 1 \Rightarrow y \overset{\omega_2}{\underset{\omega_1}{\gtrless}} \frac{1}{2}			
-		\end{equation*}
+		We start by finding the boundary conditions between the first sample of class 1 and the samples of class 2.
 		
 		Boundary between $(0,0)^T$ and $(1,0)^T$:
 		
 		\begin{equation*}
-			2 \begin{bmatrix} x & y \end{bmatrix} \begin{bmatrix}-1\\ 0\end{bmatrix} - 0 + 1 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow -2x + 1 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow 2x \overset{\omega_2}{\underset{\omega_1}{\gtrless}} 1 \Rightarrow x \overset{\omega_2}{\underset{\omega_1}{\gtrless}} \frac{1}{2}			
+			2 \begin{bmatrix} x & y \end{bmatrix} \begin{bmatrix}-1\\ 0\end{bmatrix} - 0 + 1 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow -2x + 1 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow 2x \overset{\omega_2}{\underset{\omega_1}{\gtrless}} 1 \Rightarrow x \overset{\omega_2}{\underset{\omega_1}{\gtrless}} 0.5			
 		\end{equation*}
 		
 		Boundary between $(0,0)^T$ and $(0,0.5)^T$:
@@ -89,9 +83,9 @@
 			2 \begin{bmatrix} x & y \end{bmatrix} \begin{bmatrix}0\\ -0.5\end{bmatrix} - 0 + 0.25 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow -y + 0.25 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow y \overset{\omega_2}{\underset{\omega_1}{\gtrless}} 0.25		
 		\end{equation*}
 		
-		$\therefore$ we are closest to sample $(0,0)^T$ if $y < 0.25$ and $x < 0.5$.
+		$\therefore$ we are closer to sample $(0,0)^T$ if $y < 0.25$ and $x < 0.5$.
 		
-		Next, consider the remaining area, and find the boundary conditions between the second sample of class 1 and the remaining samples of both classes.
+		Next, find the boundary conditions between the second sample of class 1 and the samples of class 2.
 		
 		Boundary between $(0,1)^T$ and $(1,0)^T$:
 		
@@ -105,11 +99,11 @@
 			2 \begin{bmatrix} x & y \end{bmatrix} \begin{bmatrix}0\\ 0.5\end{bmatrix} - 1 + 0.25 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow y - 0.75 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow y \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0.75		
 		\end{equation*}
 		
-		Because this new region is disjoint from the region above, we are closest to sample $(0,1)^T$ if $y > 0.75$ and $y > x$.
+		$\therefore$ we are closer to sample $(0,1)^T$ if $y > 0.75$ and $y > x$.
 		
-		If we take the intersection between the two regions, we can determine the boundary conditions between class 1 and class 2.
+		If we take the union between the two regions, we can determine the boundary conditions between class 1 and class 2.
 		
-		After taking the intersection of these regions, we find that we should choose class 1 if $y < 0.25$ and $x < 0.5$ or if $y > 0.75$ and $y > x$. 
+		After taking the union of these regions, we find that we should choose class 1 if $y < 0.25$ and $x < 0.5$ or if $y > 0.75$ and $y > x$. 
 		
 		\item In a two class problem using two features, we have the following four training vectors:
 		
