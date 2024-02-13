@@ -31,7 +31,7 @@
 		
 		Class 2 = $\{(1,0)^T,\:(0,0.5)^T\}$
 		
-		Consider the distance between a random input sample $\mathbf{x}$ and a training sample of either Class 1 or Class 2, which we will define as $\mathbf{x_1}$ and $\mathbf{x_2}$ respectively. In the nearest neighbor method, we will classify the input sample based on which of the training samples it is closest to. The threshold, then, occurs when the input sample is equidistant from both samples of training data.
+		Consider the distance between an input sample $\mathbf{x}$ and two training samples $\mathbf{x_1}$ and $\mathbf{x_2}$. By comparing the distances from the input sample to each training sample, we can determine which training sample the input is closest to. The boundary condition occurs when the input sample is equidistant from each training sample. 
 		
 		\begin{equation*}
 			\norm{\mathbf{x} - \mathbf{x_2}} \overset{\omega_1}{\underset{\omega_2}{\gtrless}} \norm{\mathbf{x} - \mathbf{x_1}} \Rightarrow \norm{\mathbf{x} - \mathbf{x_2}}^2  \overset{\omega_1}{\underset{\omega_2}{\gtrless}} \norm{\mathbf{x} - \mathbf{x_1}}^2
@@ -68,6 +68,48 @@
 		\begin{equation*}
 			2\mathbf{x}^T(\mathbf{x_1} - \mathbf{x_2}) - \norm{\mathbf{x_1}}^2 + \norm{\mathbf{x_2}}^2 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0
 		\end{equation*}
+		
+		We start by finding the boundary conditions between the first sample of class 1 and the remaining samples of both classes.
+		
+		Boundary between $(0,0)^T$ and $(0,1)^T$:
+		
+		\begin{equation*}
+			2 \begin{bmatrix} x & y \end{bmatrix} \begin{bmatrix}0\\ -1\end{bmatrix} - 0 + 1 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow -2y + 1 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow 2y \overset{\omega_2}{\underset{\omega_1}{\gtrless}} 1 \Rightarrow y \overset{\omega_2}{\underset{\omega_1}{\gtrless}} \frac{1}{2}			
+		\end{equation*}
+		
+		Boundary between $(0,0)^T$ and $(1,0)^T$:
+		
+		\begin{equation*}
+			2 \begin{bmatrix} x & y \end{bmatrix} \begin{bmatrix}-1\\ 0\end{bmatrix} - 0 + 1 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow -2x + 1 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow 2x \overset{\omega_2}{\underset{\omega_1}{\gtrless}} 1 \Rightarrow x \overset{\omega_2}{\underset{\omega_1}{\gtrless}} \frac{1}{2}			
+		\end{equation*}
+		
+		Boundary between $(0,0)^T$ and $(0,0.5)^T$:
+		
+		\begin{equation*}
+			2 \begin{bmatrix} x & y \end{bmatrix} \begin{bmatrix}0\\ -0.5\end{bmatrix} - 0 + 0.25 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow -y + 0.25 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow y \overset{\omega_2}{\underset{\omega_1}{\gtrless}} 0.25		
+		\end{equation*}
+		
+		$\therefore$ we are closest to sample $(0,0)^T$ if $y < 0.25$ and $x < 0.5$.
+		
+		Next, consider the remaining area, and find the boundary conditions between the second sample of class 1 and the remaining samples of both classes.
+		
+		Boundary between $(0,1)^T$ and $(1,0)^T$:
+		
+		\begin{equation*}
+			2 \begin{bmatrix} x & y \end{bmatrix} \begin{bmatrix}-1\\ 1\end{bmatrix} - 1 + 1 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow -2x + 2y \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow 2y \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 2x \Rightarrow y \overset{\omega_1}{\underset{\omega_2}{\gtrless}} x		
+		\end{equation*}
+		
+		Boundary between $(0,1)^T$ and $(0,0.5)^T$:
+		
+		\begin{equation*}
+			2 \begin{bmatrix} x & y \end{bmatrix} \begin{bmatrix}0\\ 0.5\end{bmatrix} - 1 + 0.25 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow y - 0.75 \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0 \Rightarrow y \overset{\omega_1}{\underset{\omega_2}{\gtrless}} 0.75		
+		\end{equation*}
+		
+		Because this new region is disjoint from the region above, we are closest to sample $(0,1)^T$ if $y > 0.75$ and $y > x$.
+		
+		If we take the intersection between the two regions, we can determine the boundary conditions between class 1 and class 2.
+		
+		After taking the intersection of these regions, we find that we should choose class 1 if $y < 0.25$ and $x < 0.5$ or if $y > 0.75$ and $y > x$. 
 		
 		\item In a two class problem using two features, we have the following four training vectors:
 		
