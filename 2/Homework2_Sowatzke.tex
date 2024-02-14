@@ -113,6 +113,116 @@
 		
 		Use the perceptron criterion method with $\rho_k = 1$ to determine the solution vector $\mathbf{w}$. Use an all zero vector as the starting point for $\mathbf{w}$. Show the $\mathbf{w}$ vector after each iteration.
 		
+		To start, we need to determine the $\mathbf{\hat{x}}$ vectors. For samples in class $\omega_1$, $\mathbf{\hat{x}}$ is given as follows:
+		
+		\begin{equation*}
+			\mathbf{\hat{x}} = \begin{bmatrix}\mathbf{x} 1 \end{bmatrix}
+		\end{equation*}
+			
+		For samples in class $\omega_2$, $\mathbf{\hat{x}}$ is given as follows:
+		
+		\begin{equation*}
+			\mathbf{\hat{x}} = \begin{bmatrix} -\mathbf{x} -1 \end{bmatrix}
+		\end{equation*}
+		
+		$\therefore$ the $\mathbf{\hat{x}}$ vectors are given as follows:
+		
+		\begin{equation*}
+			\mathbf{\hat{x}_1} = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix} \quad \mathbf{\hat{x}_2} = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix} \quad \mathbf{\hat{x}_3} = \begin{bmatrix} 0 \\ -1 \\ -1 \end{bmatrix} \quad \mathbf{\hat{x}_4} = \begin{bmatrix} -1 \\ -1 \\ -1 \end{bmatrix}
+		\end{equation*}		
+		
+		For each iteration, define the set of misclassified samples as follows:
+		
+		\begin{equation*}
+			E = \{\mathbf{\hat{x}}: \mathbf{w}^T\mathbf{\hat{x}} \leq 0\}
+		\end{equation*}
+		
+		After each iteration, we can then update the $\mathbf{w}$ vector as follows:
+		
+		\begin{equation*}
+			\mathbf{w}^{(n+1)} = \mathbf{w}^{(n)} + \rho_k\sum_{\mathbf{\hat{x}} \in E}{\mathbf{\hat{x}}}
+		\end{equation*}
+		
+		We contain this process until all samples are correctly classified (i.e. $\mathbf{w}$ vector does not change).
+		
+		Iteration 1:
+		
+		\begin{equation*}
+			\mathbf{w}^T\mathbf{\hat{x}_1} = 0 \quad \mathbf{w}^T\mathbf{\hat{x}_2} = 0 \quad \mathbf{w}^T\mathbf{\hat{x}_3} = 0 \quad \mathbf{w}^T\mathbf{\hat{x}_4} = 0
+		\end{equation*}
+		
+		$\Rightarrow \mathbf{\hat{x}_1}, \mathbf{\hat{x}_2}, \mathbf{\hat{x}_3}, \mathbf{\hat{x}_4} \in E$.
+		
+		\begin{equation*}
+			\mathbf{w}^{(1)} = \mathbf{w}^{(0)} + \rho_k\sum_{\mathbf{\hat{x}} \in E}{\mathbf{\hat{x}}}
+		\end{equation*}
+			
+		\begin{equation*}
+			= \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}			 + \left(\begin{bmatrix}0\\0\\1\end{bmatrix} + \begin{bmatrix}1\\0\\1\end{bmatrix} + \begin{bmatrix}0\\-1\\-1\end{bmatrix} + \begin{bmatrix}-1\\-1\\-1\end{bmatrix}\right) = \begin{bmatrix}0\\-2\\0\end{bmatrix}
+		\end{equation*}
+		
+		Iteration 2:
+		
+		\begin{equation*}
+			\mathbf{w}^T\mathbf{\hat{x}_1} = 0 \quad \mathbf{w}^T\mathbf{\hat{x}_2} = 0 \quad \mathbf{w}^T\mathbf{\hat{x}_3} = 2 \quad \mathbf{w}^T\mathbf{\hat{x}_4} = 2
+		\end{equation*}
+		
+		$\Rightarrow \mathbf{\hat{x}_1}, \mathbf{\hat{x}_2} \in E$.
+		
+		\begin{equation*}
+			\mathbf{w}^{(2)} = \mathbf{w}^{(1)} + \rho_k\sum_{\mathbf{\hat{x}} \in E}{\mathbf{\hat{x}}}
+		\end{equation*}
+			
+		\begin{equation*}
+			= \begin{bmatrix} 0 \\ -2 \\ 0 \end{bmatrix}			 + \left(\begin{bmatrix}0\\0\\1\end{bmatrix} + \begin{bmatrix}1\\0\\1\end{bmatrix}\right) = \begin{bmatrix}1\\-2\\2\end{bmatrix}
+		\end{equation*}
+		
+		Iteration 3:
+		
+		\begin{equation*}
+			\mathbf{w}^T\mathbf{\hat{x}_1} = 2 \quad \mathbf{w}^T\mathbf{\hat{x}_2} = 3 \quad \mathbf{w}^T\mathbf{\hat{x}_3} = 0 \quad \mathbf{w}^T\mathbf{\hat{x}_4} = -1
+		\end{equation*}
+		
+		$\Rightarrow \mathbf{\hat{x}_1}, \mathbf{\hat{x}_2} \in E$.
+		
+		\begin{equation*}
+			\mathbf{w}^{(3)} = \mathbf{w}^{(2)} + \rho_k\sum_{\mathbf{\hat{x}} \in E}{\mathbf{\hat{x}}}
+		\end{equation*}
+			
+		\begin{equation*}
+			= \begin{bmatrix} 1 \\ -2 \\ 2 \end{bmatrix}			 + \left(\begin{bmatrix}0\\-1\\-1\end{bmatrix} + \begin{bmatrix}-1\\-1\\-1\end{bmatrix}\right) = \begin{bmatrix}0\\-4\\0\end{bmatrix}
+		\end{equation*}
+		
+		Iteration 4:
+		
+		\begin{equation*}
+			\mathbf{w}^T\mathbf{\hat{x}_1} = 0 \quad \mathbf{w}^T\mathbf{\hat{x}_2} = 0 \quad \mathbf{w}^T\mathbf{\hat{x}_3} = 4 \quad \mathbf{w}^T\mathbf{\hat{x}_4} = 4
+		\end{equation*}
+		
+		$\Rightarrow \mathbf{\hat{x}_1}, \mathbf{\hat{x}_2} \in E$.
+		
+		\begin{equation*}
+			\mathbf{w}^{(3)} = \mathbf{w}^{(2)} + \rho_k\sum_{\mathbf{\hat{x}} \in E}{\mathbf{\hat{x}}}
+		\end{equation*}
+			
+		\begin{equation*}
+			= \begin{bmatrix} 0 \\ -4 \\ 0 \end{bmatrix}			 + \left(\begin{bmatrix}0\\0\\1\end{bmatrix} + \begin{bmatrix}1\\0\\1\end{bmatrix}\right) = \begin{bmatrix}1\\-4\\2\end{bmatrix}
+		\end{equation*}
+		
+		Iteration 5:
+		
+		\begin{equation*}
+			\mathbf{w}^T\mathbf{\hat{x}_1} = 2 \quad \mathbf{w}^T\mathbf{\hat{x}_2} = 3 \quad \mathbf{w}^T\mathbf{\hat{x}_3} = 2 \quad \mathbf{w}^T\mathbf{\hat{x}_4} = 1
+		\end{equation*}
+		
+		$\Rightarrow E = \{\emptyset\}$
+		
+		$\therefore$ all samples are correctly classified and the final value of $\mathbf{w}$ is given by:
+		
+		\begin{equation*}
+			\mathbf{w} = \begin{bmatrix}1 \\ -4 \\ 2\end{bmatrix}
+		\end{equation*}
+		
 		\item Consider the following training data:
 		
 		Class $\omega_1 = [(0,0)^T\quad(1,0)^T\quad(0,-1)^T]$
