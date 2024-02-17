@@ -290,7 +290,7 @@
 			\mathbf{w} = \mathbf{A}^{\dag}\mathbf{b} = \begin{bmatrix} 0.9730 \\ -1.0541 \\ 0.1892 \end{bmatrix}
 		\end{equation*}
 		
-		The data is linearly separable if each element of $\mathbf{A}\mathbf{w}$ is greater than zero.
+		The data is linearly separable if $\mathbf{A}\mathbf{w} > \mathbf{b}$
 		
 		\begin{equation*}
 			\mathbf{A}\mathbf{w} = \begin{bmatrix}
@@ -300,10 +300,10 @@
     				0.8649 \\
     				0.9459 \\
     				0.7838
-			\end{bmatrix}
+			\end{bmatrix} \ngtr \mathbf{b}
 		\end{equation*}
 		
-		Because each element of $\mathbf{A}\mathbf{w}$ is greater than zero, the data is linearly separable.
+		$\therefore$, the data is not linearly separable.
 		
 	\end{enumerate}
 \end{document}
