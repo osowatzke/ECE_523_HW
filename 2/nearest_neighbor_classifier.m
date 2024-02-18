@@ -2,19 +2,7 @@
 IRIS_data = readcell('IRIS_data.xlsx');
 
 % Get the classifier for each row of data
-class_truth = IRIS_data(:,end);
-
-% Class names
-class_names = {'setosa', 'versicolor', 'virginica'};
-
-% Create a tempory matrix for comparisons
-temp = zeros(size(class_truth));
-
-% Convert the classifier from a string to a number
-for i = 1:length(class_names)
-    temp(contains(class_truth, class_names{i})) = i;
-end
-class_truth = temp;
+class_truth = double(categorical(IRIS_data(:,end)));
 
 % Create a matrix from the data MxN
 IRIS_data = cell2mat(IRIS_data(:,1:(end-1)));
@@ -33,7 +21,7 @@ dist = reshape(dist, size(IRIS_data,1), []);
 dist(1:(size(IRIS_data,1)+1):end) = Inf;
 
 % Find the nearest neighbor to each sample
-[~, I] = min(dist, [], 2);
+[M, I] = min(dist, [], 2);
 
 % Determine the measured class of each sample
 class_meas = class_truth(I);
