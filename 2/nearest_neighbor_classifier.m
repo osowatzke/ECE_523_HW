@@ -13,11 +13,11 @@ dist = sum(abs(IRIS_data - permute(IRIS_data, [3 2 1])).^2, 2);
 % Remove the singleton dimension to form an MxM matrix
 dist = reshape(dist, size(IRIS_data,1), []);
 
-% Entries on the main diagonal are the distance from the point to itself
-% Removing these entries is equivalent to training the classifier with all
-% samples except the training sample. Since we are looking for minimum
-% distances, we can make the main diagonal infinite to avoid selecting
-% the entries on the main diagonal
+% Entries on the main diagonal are the distance from the point to
+% itself. Removing these entries is equivalent to training the
+% classifier with all samples except the training sample. Since we
+% are looking for minimum distances, we can make the main diagonal
+% infinite to avoid selecting the entries on the main diagonal.
 dist(1:(size(IRIS_data,1)+1):end) = Inf;
 
 % Find the nearest neighbor to each sample
