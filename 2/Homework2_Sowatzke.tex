@@ -321,6 +321,8 @@
 		
 		Using the IRIS data set available at \href{https://en.wikipedia.org/wiki/IRIS_flower_data_set}{https://en.wikipedia.org/wiki/\\IRIS\_flower\_data\_set}, design a 1-nearest neighbor classifier. Then, test each sample using the 1-NN rule to determine its class, and compare it to its true label. Tabulate your results in the form of a confusion table.
 		
+		Because the IRIS data set for this problem was small, I used leave-one-out cross-validation (LOOCV) to generate the confusion table. Specifically, for each training sample, I designed a 1-nearest neighbor classifier by leaving out the selected sample and training with the rest of the data. Then, I classified the selected sample using the classifier. Finally, I tabulated the results for each training sample in a confusion matrix.
+		
 		\item Computer Exercise:
 		
 		Using the IRIS data set, design a Fisher LDF that discriminates between the Setosa (class 1), and the other two classes (Versicolor and Verginica combined together as class 2). What is the overall classification accuracy? Tabulate your results in the form of a confusion matrix.
