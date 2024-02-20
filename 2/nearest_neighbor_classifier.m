@@ -27,7 +27,7 @@ dist(1:(size(IRIS_data,1)+1):end) = Inf;
 class_meas = class_truth(I);
 
 % Create an empty confusion matrix
-confusion_matrix = zeros(length(class_names));
+confusion_matrix = zeros(length(unique(class_truth)));
 
 % Populate each row of the confusion matrix
 for i = 1:size(confusion_matrix,1)

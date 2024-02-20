@@ -3,6 +3,18 @@
 \usepackage{amsmath, nccmath, bm}
 \usepackage{amssymb}
 \usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage[hidelinks,colorlinks=true,urlcolor=blue]{hyperref}
+
+\makeatletter
+\begingroup
+  \catcode`\$=6 %
+  \catcode`\#=12 %
+  \gdef\href@split$1#$2#$3\\$4{%
+    \hyper@@link{$1}{$2}{\uline{$4}}% or \underline
+    \endgroup
+  }%
+\endgroup
 
 \newcommand{\zerodisplayskip}{
 	\setlength{\abovedisplayskip}{0pt}%
@@ -304,6 +316,10 @@
 		\end{equation*}
 		
 		$\therefore$, the data is not linearly separable.
+		
+		\item Compute Exercise:
+		
+		Using the IRIS data set available at \href{https://en.wikipedia.org/wiki/IRIS_flower_data_set}{https://en.wikipedia.org/wiki/\\IRIS\_flower\_data\_set}, design a 1-nearest neighbor classifier. Then, test each sample using the 1-NN rule to determine its class, and compare it to its true label. Tabulate your results in the form of a confusion table.
 		
 	\end{enumerate}
 \end{document}
