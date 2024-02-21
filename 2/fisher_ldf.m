@@ -29,11 +29,11 @@ w = Sw^(-1)*(m{1} - m{2});
 % Project the data onto the discriminant
 Y = cellfun(@(X)X*w, IRIS_data, 'UniformOutput', false);
 
-% Project the means onto the discriminant
-m = cellfun(@(m) w'*m, m);
+% Compute the mean of the projected data
+m = cellfun(@(Y) mean(Y), Y);
 
 % Compute the standard deviation of the projected data
-s = cellfun(@(Y) std(Y, 1), Y);
+s = cellfun(@(Y) std(Y), Y);
 
 % Assume equal prior probabilities
 P = [0.5; 0.5];

@@ -355,6 +355,27 @@
 		
 		Using the IRIS data set, design a Fisher LDF that discriminates between the Setosa (class 1), and the other two classes (Versicolor and Verginica combined together as class 2). What is the overall classification accuracy? Tabulate your results in the form of a confusion matrix.
 		
+		In my software, I computed Fisher's Linear Discriminant ($\mathbf{w}$) using the following formula:
+		
+		\begin{equation*}
+			\mathbf{w} = \mathbf{S_w}^{-1}(\mathbf{m_1} - \mathbf{m_2})
+		\end{equation*}
+		
+		where $\mathbf{m_1}$ was the mean of the class 1 data, $\mathbf{m_2}$ was the mean of the class 2 data, and $\mathbf{S_w}$ was defined as follows:
+		
+		\begin{equation*}
+			\mathbf{S_w} = \mathbf{S_1} + \mathbf{S_2}
+		\end{equation*}
+		
+		In the above formula, $\mathbf{S_1}$ and $\mathbf{S_2}$ represent the covariance of the class 1 and class 2 data respectively. 
+		
+		Once I had the linear discriminant, I projected the data onto it. Next to classify the data, I assumed that the projected data for each class had a Guassian distribution. Then, to separate the data, I used a minimum mean-squared error classifier defined by the following equation:
+		
+		\begin{equation*}
+			\frac{(x - \mu_2)^2}{2\sigma_2^2} - \frac{(x - \mu_1)^2}{2\sigma_1^2} \overset{\omega_1}{\underset{\omega_2}{\gtrless}} ln\left[\frac{P(\omega_2)}{P(\omega_1)}\cdot\frac{\sigma_1}{\sigma_2}\right]
+		\end{equation*}
+		
+		I derived the means and variances from the projected  data and assumed equal prior probabilities for both classes.
 	\end{enumerate}
 	
 	\pagebreak
