@@ -18,28 +18,37 @@ end
 IRIS_data = temp;
 
 % Compute the mean and covariance of the IRIS data
-mu = cellfun(@(x) mean(x).', IRIS_data,'UniformOutput',false);
+m = cellfun(@(x) mean(x).', IRIS_data,'UniformOutput',false);
 S = cellfun(@(x) cov(x), IRIS_data,'UniformOutput',false);
 S = reshape(S,1,1,length(S));
 
 % Compute Fisher discriminant
 Sw = sum(cell2mat(S),3);
-w = Sw^(-1)*(mu{1} - mu{2});
+w = Sw^(-1)*(m{1} - m{2});
 
-% Compute decision threshold
-c = ((mu{1} + mu{2})/2);
-t = w'*c;
+% Project the data onto the discriminant
+Y = cellfun(@(X)X*w, IRIS_data, 'UniformOutput', false);
 
-% Project means onto discriminant
-mu1 = w'*mu{1};
-mu2 = w'*mu{2};
+% Project the means onto the discriminant
+m = cellfun(@(m) w'*m, m);
+
+% Compute the standard deviation of the projected data
+s = cellfun(@(Y) std(Y, 1), Y);
+
+% Assume equal prior probabilities
+P = [0.5; 0.5];
+
+% Assume the data is Guassian and pick the threshold which produces
+% minimum error. Decision boundary will be quadratic. Store
+% resulting polynomial coefficients in an array.
+p = conv([1, -m(2)],[1, -m(2)])/(2*s(2)^2) ...   % (x-m2^2)/(2*s2^2)
+    - conv([1, -m(1)],[1, -m(1)])/(2*s(1)^2) ... % (x-m1^2)/(2*s1^2)
+    - [0 0 1]*log(P(2)/P(1)*s(1)/s(2));          % ln(P2/P1*s1/s2);
 
 % Classify each of the samples
-if (mu1 > mu2)
-    class_meas = cellfun(@(A) (A*w < t) + 1, IRIS_data, 'UniformOutput', false);
-else
-    class_meas = cellfun(@(A) (A*w >= t) + 1, IRIS_data, 'UniformOutput', false);
-end
+% Class 2 if p(1)*Y^2 + p(2)*Y + p(3) < 0
+class_meas = cellfun(@(Y) (p(1)*Y.^2 + p(2)*Y + p(3) < 0) + 1, ...
+    Y, 'UniformOutput', false);
 
 % Create confusion matrix
 confusion_matrix = zeros(length(class_meas));
@@ -50,64 +59,18 @@ for i = 1:size(confusion_matrix,1)
 end
 
 % Display confusion matrix
+disp('Confusion Matrix:');
 disp(confusion_matrix);
 
-% Plot projected data
-figure(1)
-clf;
-hold on;
-for i = 1:length(IRIS_data)
-    histogram(IRIS_data{i}*w);
-end
+% Compute number of errors
+num_errors = sum(confusion_matrix,2) - diag(confusion_matrix);
 
-% Plot decision threshold
-line(t*ones(1,2),ylim,'Color','black','LineStyle','--','LineWidth',1.5);
-box on;
+% Compute conditional error probabilities
+Pe = num_errors./sum(confusion_matrix,2);
 
-% Plot data, line to project onto, and threshold
-if length(w) == 2
+% Compute probability of error based on assumed class frequency
+Pe = sum(Pe(:).*P(:));
 
-    % Create scatter plot of input data
-    figure(2);
-    clf;
-    hold on;
-    for i = 1:length(IRIS_data)
-        scatter(IRIS_data{i}(:,1),IRIS_data{i}(:,2),'Filled');
-    end
-
-    % Compute best plot limits
-    xbounds = xlim;
-    ybounds = ylim;
-    xrange = xbounds(2) - xbounds(1);
-    yrange = ybounds(2) - ybounds(1);
-    if (xrange > yrange)
-        range_delta = xrange - yrange;
-        ybounds(1) = ybounds(1) - range_delta/2;
-        ybounds(2) = ybounds(2) + range_delta/2;
-    else
-        range_delta = yrange - xrange;
-        xbounds(1) = xbounds(1) - range_delta/2;
-        xbounds(2) = xbounds(2) + range_delta/2;
-    end
-
-    % Plot line to project onto
-    m = w(2)/w(1);
-    b = c(2) - m*c(1);
-    x = xbounds;
-    y = m*x+b;
-    plot(x,y,'LineWidth',1.5);
-
-    % Plot decision threshold
-    m = -1/m;
-    b = c(2)-m*c(1);
-    y = m*x+b;
-    plot(x,y,'LineWidth',1.5);
-
-    % Set plot limits
-    xlim([-2 8]);
-    ylim([-5 5]);
-    xlim(xbounds);
-    ylim(ybounds);
-    axis square;
-    box on;
-end
+% Display probability of error
+disp('Probability of Error:');
+disp(Pe);
