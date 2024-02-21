@@ -148,13 +148,13 @@
 		To start, we need to determine the $\mathbf{\hat{x}}$ vectors. For samples in class $\omega_1$, $\mathbf{\hat{x}}$ is given as follows:
 		
 		\begin{equation*}
-			\mathbf{\hat{x}} = \begin{bmatrix}\mathbf{x} 1 \end{bmatrix}
+			\mathbf{\hat{x}} = \begin{bmatrix}\mathbf{x}\\ 1 \end{bmatrix}
 		\end{equation*}
 			
 		For samples in class $\omega_2$, $\mathbf{\hat{x}}$ is given as follows:
 		
 		\begin{equation*}
-			\mathbf{\hat{x}} = \begin{bmatrix} -\mathbf{x} -1 \end{bmatrix}
+			\mathbf{\hat{x}} = \begin{bmatrix} -\mathbf{x}\\ -1 \end{bmatrix}
 		\end{equation*}
 		
 		$\therefore$ the $\mathbf{\hat{x}}$ vectors are given as follows:
@@ -215,7 +215,7 @@
 			\mathbf{w}^T\mathbf{\hat{x}_1} = 2 \quad \mathbf{w}^T\mathbf{\hat{x}_2} = 3 \quad \mathbf{w}^T\mathbf{\hat{x}_3} = 0 \quad \mathbf{w}^T\mathbf{\hat{x}_4} = -1
 		\end{equation*}
 		
-		$\Rightarrow \mathbf{\hat{x}_1}, \mathbf{\hat{x}_2} \in E$.
+		$\Rightarrow \mathbf{\hat{x}_3}, \mathbf{\hat{x}_4} \in E$.
 		
 		\begin{equation*}
 			\mathbf{w}^{(3)} = \mathbf{w}^{(2)} + \rho_k\sum_{\mathbf{\hat{x}} \in E}{\mathbf{\hat{x}}}
