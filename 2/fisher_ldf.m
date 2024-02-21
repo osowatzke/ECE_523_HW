@@ -62,15 +62,44 @@ end
 disp('Confusion Matrix:');
 disp(confusion_matrix);
 
-% Compute number of errors
-num_errors = sum(confusion_matrix,2) - diag(confusion_matrix);
+% Compute number of correct classifications
+num_correct_class = diag(confusion_matrix);
 
-% Compute conditional error probabilities
-Pe = num_errors./sum(confusion_matrix,2);
+% Compute conditional probabilities of correct classifications
+Pc = num_correct_class./sum(confusion_matrix,2);
 
-% Compute probability of error based on assumed class frequency
-Pe = sum(Pe(:).*P(:));
+% Using assumed class frequencies, compute classification accurracy
+% (probability of correct classification)
+Pc = sum(Pc(:).*P(:));
 
-% Display probability of error
-disp('Probability of Error:');
-disp(Pe);
+% Display classification accuracy
+disp('Classification Accurracy:');
+fprintf("\t%.2f%%\n",Pc*100);
+
+% Plot projected data
+figure(1)
+clf;
+hold on;
+for i = 1:length(IRIS_data)
+    histogram(IRIS_data{i}*w,10);
+end
+
+% Compute roots of polynomial describining decision boundaries
+r = roots(p);
+
+% Ignore complex roots
+r = real(r(abs(imag(r)) < 1e-8));
+
+% Plot decision boundaries
+for i = 1:length(r)
+    line(r(i)*ones(1,2),ylim,'Color','Black','LineWidth',1.5,...
+        'LineStyle','--');
+end
+box on;
+
+% Label plot
+legend_str = repmat({''},2+length(r),1);
+legend_str{1} = 'Class 1';
+legend_str{2} = 'Class 2';
+legend_str{3} = 'Threshold';
+legend(legend_str,'Location','best');
