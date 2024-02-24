@@ -133,9 +133,13 @@
 		
 		$\therefore$ we are closer to sample $(0,1)^T$ if $y > 0.75$ and $y > x$.
 		
-		If we take the union between the two regions, we can determine the boundary conditions between class 1 and class 2.
+		If we take the union between the two regions, we can determine the boundary conditions between class 1 and class 2. Performing this operation, we find that we should choose class 1 if $y < 0.25$ and $x < 0.5$ or if $y > 0.75$ and $y > x$. These decision regions are illustrated in Figure \ref{1nn_decision_regions}.
 		
-		After taking the union of these regions, we find that we should choose class 1 if $y < 0.25$ and $x < 0.5$ or if $y > 0.75$ and $y > x$. 
+		\begin{figure}[H]				
+			\centerline{\fbox{\includegraphics[width=0.9\textwidth]{1nn_decision_regions.png}}}
+			\caption{Decision Regions from Nearest Neighbor Classifier}
+			\label{1nn_decision_regions}
+		\end{figure}
 		
 		\item In a two class problem using two features, we have the following four training vectors:
 		
