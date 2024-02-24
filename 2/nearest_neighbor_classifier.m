@@ -44,3 +44,21 @@ end
 
 % Display confusion matrix
 disp(confusion_matrix);
+
+% Compute number of correct classifications
+num_correct_class = diag(confusion_matrix);
+
+% Compute conditional probabilities of correct classifications
+Pc = num_correct_class./sum(confusion_matrix,2);
+
+% Assume equal prior probabilities
+P = ones(size(confusion_matrix,1),1);
+P = P/length(P);
+
+% Using assumed class frequencies, compute classification accurracy
+% (probability of correct classification)
+Pc = sum(Pc(:).*P);
+
+% Display classification accuracy
+disp('Classification Accurracy:');
+fprintf("\t%.2f%%\n",Pc*100);

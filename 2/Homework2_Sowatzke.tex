@@ -345,15 +345,13 @@
 		
 		Using the IRIS data set available at \href{https://en.wikipedia.org/wiki/IRIS_flower_data_set}{https://en.wikipedia.org/wiki/\\IRIS\_flower\_data\_set}, design a 1-nearest neighbor classifier. Then, test each sample using the 1-NN rule to determine its class, and compare it to its true label. Tabulate your results in the form of a confusion table.
 		
-		Because the IRIS data set for this problem was small, I used leave-one-out cross-validation (LOOCV) to generate the confusion table. Specifically, for each training sample, I designed a 1-nearest neighbor classifier by leaving out the selected sample and training with the rest of the data. Then, I classified the selected sample using the generated classifier. Finally, I tabulated the classification results for each training sample in a confusion matrix. The software I wrote to perform these operations is given in Appendix \ref{nearest_neighbor} and attached with the submission. The resulting confusion matrix is given in Figure \ref{1nn_confusion_matrix}.
+		Because the IRIS data set for this problem was small, I used leave-one-out cross-validation (LOOCV) to generate the confusion table. Specifically, for each training sample, I designed a 1-nearest neighbor classifier by leaving out the selected sample and training with the rest of the data. Then, I classified the selected sample using the generated classifier. Finally, I tabulated the classification results for each training sample in a confusion matrix. The software I wrote to perform these operations is given in Appendix \ref{nearest_neighbor} and attached with the submission. The resulting confusion matrix and classification accuracy are given in Figure \ref{1nn_confusion_matrix}.
 		
 		\begin{figure}[H]				
 			\centerline{\fbox{\includegraphics[width=0.5\textwidth]{1nn_confusion_matrix.png}}}
-			\caption{Confusion Matrix Output by 1-Nearest Neighbor Classifier.}
+			\caption{Output of 1-Nearest Neighbor Classifier.}
 			\label{1nn_confusion_matrix}
 		\end{figure}
-		
-		\pagebreak
 		
 		\item Computer Exercise:
 		
