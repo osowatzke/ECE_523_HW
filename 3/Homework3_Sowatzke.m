@@ -45,11 +45,37 @@ plot([-1 3],[3 -1],'k--');
 plot([-1 2],[2 -1],'k--');
 axis square;
 doublearrow([0, 0.5],[1 1.5]);
+text(0,1.25,'M');
 box on;
 legend('Class \omega_1','Class \omega_2','Weight vector');
 
+X1 = [1, 1;
+      2, 2;
+      2, 0]';
+X2 = [0, 0;
+      1, 0;
+      0, 1]';
+X = [X1 -X2];
+H = X'*X;
+f = -ones(size(X,2),1);
+A = [1 1 1 -1 -1 -1];
+b = 0;
+options = optimoptions('quadprog','Display','iter');
+[a,FVAL] = quadprog(H,f,[],[],A,b,zeros(6,1),[],[],options);
+w = X*a;
+[~,I] = max(a);
+if (I <= 3)
+    b = 1 - w'*X(:,I);
+else
+    b = -1 - w'*X(:,I);
+end
 
 function doublearrow(x,y)
+    [x,y] = toNormalizedUnits(x,y);
+    annotation('doublearrow',x,y)
+end
+
+function [x,y] = toNormalizedUnits(x,y)
     ax = gca;
     xLim = xlim;
     yLim = ylim;
@@ -66,5 +92,4 @@ function doublearrow(x,y)
     yStart = yCenter - yRange/2*ySf;
     x = (x - xLim(1))*xSf + xStart;
     y = (y - yLim(1))*ySf + yStart;
-    annotation('doublearrow',x,y)
 end
