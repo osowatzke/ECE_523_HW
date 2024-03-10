@@ -5,24 +5,21 @@ X1 = [ 1,  1;
 X2 = [ 1, -1;
       -1,  1]';
 
-X = [X1 X2];
+phi = @(X)([ones(1,size(X,2)); ...
+            sqrt(2)*X(1,:); ...
+            sqrt(2)*X(2,:); ...
+            sqrt(2)*X(1,:).*X(2,:); ...
+            X(1,:).^2; ...
+            X(2,:).^2]);
 
-X = [ones(1,size(X,2));
-     sqrt(2)*X(1,:);
-     sqrt(2)*X(2,:);
-     sqrt(2)*X(1,:).*X(2,:);
-     X(1,:).^2;
-     X(2,:).^2;
-     ones(1,size(X,2))];
-
-X(:,3:4) = -X(:,3:4);
-
-H = X'*X;
-f = -ones(size(X,2),1);
-A = [1 1 -1 -1];
-b = 0;
-a = quadprog(H,f,[],[],A,b);
-w = X*a;
+X1 = phi(X1);
+X2 = phi(X2);
+[w,b] = svm(X1,X2);
+fprintf('Problem 1:\n');
+fprintf('w\n')
+disp(w);
+fprintf('b = %g\n', b);
+fprintf('\n');
 
 % Problem 2
 X1 = [1 1;
@@ -60,7 +57,7 @@ H = X'*X;
 f = -ones(size(X,2),1);
 A = [1 1 1 -1 -1 -1];
 b = 0;
-options = optimoptions('quadprog','Display','iter');
+
 [a,FVAL] = quadprog(H,f,[],[],A,b,zeros(6,1),[],[],options);
 w = X*a;
 [~,I] = max(a);
@@ -92,4 +89,23 @@ function [x,y] = toNormalizedUnits(x,y)
     yStart = yCenter - yRange/2*ySf;
     x = (x - xLim(1))*xSf + xStart;
     y = (y - yLim(1))*ySf + yStart;
+end
+
+function [w, b] = svm(X1, X2)
+    X_hat = [X1, -X2];
+    H = X_hat'*X_hat;
+    f = -ones(1,size(X_hat,2));
+    A = [ones(1,size(X1,2)), -ones(1,size(X2,2))];
+    b = 0;
+    a = quadprog(H,f,[],[],A,b,zeros(size(X_hat,2),1));
+    w = X_hat*a;
+    idx = find(a >= 1e-4, 1);
+    if idx > size(X1,2)
+        y = -1;
+        x = X2(:,idx - size(X1,2));
+    else
+        y = 1;
+        x = X1(:,idx);
+    end
+    b = y - w.'*x;
 end
