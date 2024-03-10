@@ -50,6 +50,8 @@
 		\label{exclusive_or}
 	\end{figure}
 		
+	First, we transform the data using the $\varphi$ functions. The resulting data is given as follows:
+	
 	$\varphi(\mathbf{x_1}) = [1,\sqrt{2},\sqrt{2},\sqrt{2},1,1]^T$
 	
 	$\varphi(\mathbf{x_2}) = [1,-\sqrt{2},-\sqrt{2},\sqrt{2},1,1]^T$
@@ -58,6 +60,22 @@
 	
 	$\varphi(\mathbf{x_4}) = [1,-\sqrt{2},\sqrt{2},-\sqrt{2},1,1]^T$
 	
+	Next, we can re-express the problem in a form suitable for quadratic programming. Quadratic programming can be used to find $\mathbf{x}$ which minimizes \newline $\frac{1}{2}\mathbf{x}^T\mathbf{H}\mathbf{x} + \mathbf{f}^T\mathbf{x}$ subject to $\mathbf{Ax} = \mathbf{b}$ and $\mathbf{x} \geq \mathbf{0}$.
+	
+	Note that we are trying to maximize:
+	
+	$\mathbf{Q(\boldsymbol{\alpha})} = \sum{a_i} - \frac{1}{2}\sum{\sum{\alpha_i\alpha_jy_iy_j\mathbf{x_i}^T\mathbf{x_j}}}$.
+	
+	Because the function is quadratic, this is equivalent to minimizing:
+	
+	$-\mathbf{Q(\boldsymbol{\alpha})} = \frac{1}{2}\sum{\sum{\alpha_i\alpha_jy_iy_j\mathbf{x_i}^T\mathbf{x_j}}} - \sum{a_i}$
+	
+	Let $\mathbf{\hat{x}_i} = y_i\mathbf{x_i}$ (i.e. let $\mathbf{\hat{x}_i} = \mathbf{x}$ for class 1 and let $\mathbf{\hat{x}_i} = -\mathbf{x}$ for class 2).
+	
+	The nested sum can now be written as $\boldsymbol{\alpha}^T\mathbf{A}^T\mathbf{A}\boldsymbol{\alpha} = \boldsymbol{\alpha}^T\mathbf{H}\boldsymbol{\alpha}$ \newline where $\boldsymbol{\alpha} = [\alpha_1,\alpha_2,\alpha_3,\alpha_4]^T$ and $\mathbf{A} = [\mathbf{\hat{x}_1},\mathbf{\hat{x}_2}, \mathbf{\hat{x}_3}, \mathbf{\hat{x}_4}]$.
+	
+	$-\sum{\alpha_i}$ can also be rewritten as $\mathbf{f}\boldsymbol{\alpha}$ with $\mathbf{f} = [-1,-1,-1,-1]^T$.
+	  
 	\item Consider a Support Vector Machine and the following training data from two categories:
 	
 	\begin{center}
