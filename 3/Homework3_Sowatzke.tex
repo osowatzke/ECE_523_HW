@@ -212,5 +212,13 @@
 		This matches the result from part (a).
 		
 	\end{enumerate}
+	
+	\item The linear programming problem discussed in class involved minimizing a single artificial variable $\tau$ under the constraints $\mathbf{a}^T\mathbf{y_i} + \tau > b_i$ and $\tau \geq 0$. Show that the resulting weight vector minimizes the criterion function
+	
+	\begin{equation*}
+		J_{\tau}(\mathbf{a}) = \underset{\mathbf{a}^T\mathbf{y_i} \leq b_i}{\text{max}}[b_i - \mathbf{a}^T\mathbf{y_i}]
+	\end{equation*}
+	
+	Here, $\mathbf{a}$ is the weight vectors, $\mathbf{y_i}$ are the data vectors, and $\mathbf{b_i}$ are the scalar constants.
 	\end{enumerate}
 \end{document}
