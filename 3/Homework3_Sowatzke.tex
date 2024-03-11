@@ -82,7 +82,7 @@
 	  
 	Furthermore, $\sum{\alpha_iy_i} = 0$ is equivalent to $\mathbf{A}\boldsymbol{\alpha} = \mathbf{b}$ where \newline $\mathbf{A} = [y_1,y_2,y_3,y_4] = [1,1,-1,-1]$ and $\mathbf{b} = 0$.
 	
-	Therefore, we can solve for $\boldsymbol{\alpha}$ which minimizes $\frac{1}{2}\boldsymbol{\alpha}^T\mathbf{H}\boldsymbol{\alpha} + \mathbf{f}^T\boldsymbol{\alpha}$ subject to $\mathbf{A}\boldsymbol{\alpha} = \mathbf{b}$ and $\boldsymbol{\alpha} \geq 0$, where $\mathbf{H}$, $\mathbf{f}$, $\mathbf{A}$, and $\mathbf{b}$ are given above.
+	Therefore, we can solve for $\boldsymbol{\alpha}$ which minimizes $\frac{1}{2}\boldsymbol{\alpha}^T\mathbf{H}\boldsymbol{\alpha} + \mathbf{f}^T\boldsymbol{\alpha}$ subject to $\mathbf{A}\boldsymbol{\alpha} = \mathbf{b}$ and $\boldsymbol{\alpha} \geq \mathbf{0}$, where $\mathbf{H}$, $\mathbf{f}$, $\mathbf{A}$, and $\mathbf{b}$ are given above.
 	
 	Doing so results in the following $\boldsymbol{\alpha}$ vector:
 	
@@ -94,9 +94,9 @@
 	
 	$\mathbf{w} = \sum{\alpha_iy_i\mathbf{x_i}} = \boldsymbol{\hat{X}}\boldsymbol{\alpha} = [0,0,0,1/\sqrt{2},0,0]^T$
 	
-	Finally, we can solve for $\mathbf{b}$ as follows:
+	Finally, we can solve for $b$ as follows:
 	
-	$\mathbf{b} = y_1 - \mathbf{w}^T\mathbf{x_1} = 1 - 1 = 0$
+	$b = y_1 - \mathbf{w}^T\mathbf{x_1} = 1 - 1 = 0$
 	
 	The optimal discriminant $g(x_1,x_2)$ is then given as follows:
 	
@@ -171,9 +171,46 @@
 		
 		$\mathbf{x} = [0, 1]^T$, $\mathbf{x} = [1, 0]^T$, $\mathbf{x} = [1, 1]^T$, and $\mathbf{x} = [2, 0]^T$
 		
-		
-		
 		\item[(c)] Construct the solution in the dual space by finding the Lagrange undetermined multipliers, $\alpha_i$. Compare your result to that in \newline part (a).
+		
+		Define the following variables:
+		
+		$\boldsymbol{\alpha} = [\alpha_1, \alpha_2, ..., \alpha_6]^T$
+		
+		$\mathbf{\hat{x}} = y_i\mathbf{x_i}$ where $y_i = 1$ for class 1 and $y_i = -1$ for class 2
+		
+		We can use quadratic programming to find $\boldsymbol{\alpha}$ which minimizes \newline $\frac{1}{2}\boldsymbol{\alpha}^T\mathbf{H}\boldsymbol{\alpha} + \mathbf{f}^T\boldsymbol{\alpha}$ subject to $\mathbf{A}\boldsymbol{\alpha} = \mathbf{b}$ and $\boldsymbol{\alpha} > \mathbf{0}$.
+		
+		Referring to the work in problem 1, we require that $\mathbf{H}$, $\mathbf{f}$, $\mathbf{A}$, and $\mathbf{b}$ be defined follows:		
+		
+		$\mathbf{H} = \mathbf{\hat{X}}^T\mathbf{\hat{X}}$ where $\mathbf{\hat{X}} = [\mathbf{\hat{x}_1}, \mathbf{\hat{x}_2}, ..., \mathbf{\mathbf{x}_6}]$
+		
+		$\mathbf{f} = [1, 1, 1, 1, 1, 1]^T$
+		
+		$\mathbf{A} = [y_1, y_2, ..., y_6] = [1, 1, 1, -1, -1, -1]$ 
+		
+		$\mathbf{b} = 0$
+		
+		Solving for $\boldsymbol{\alpha}$ using quadratic programming results in
+		
+		$\boldsymbol{\alpha} = [3.0174, 0, 0.9826, 0, 2.9826, 1.0174]^T$
+		
+		Next, we can solve for $\mathbf{w}$ as follows:
+		
+		$\mathbf{w} = \sum{\alpha_iy_i\mathbf{x_i}} = \mathbf{\hat{X}}\boldsymbol{\alpha} = \begin{bmatrix} 2 \\ 2 \end{bmatrix}$
+		
+		Then, we can solve for $b$ as follows:
+	
+		$b = y_1 - \mathbf{w}^T\mathbf{x_1} = 1 - (2(1) + 2(1)) = 1 - 4 = -3$
+		
+		Finally, we can solve for the margin as follows:
+		
+		\begin{equation*}
+			M = \frac{2}{\norm{\mathbf{w}}} = \frac{2}{\sqrt{2^2 + 2^2}} = \frac{2}{\sqrt{8}} = \frac{2}{2\sqrt{2}} = \frac{1}{\sqrt{2}}
+		\end{equation*}
+		
+		This matches the result from part (a).
+		
 	\end{enumerate}
 	\end{enumerate}
 \end{document}
