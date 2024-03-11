@@ -30,6 +30,8 @@
 	\setlength{\belowdisplayshortskip}{0pt}%
 	\setlength{\mathindent}{0pt}}
 	
+\newcommand{\norm}[1]{\left \lVert #1 \right \rVert}
+
 \title{Homework 3}
 \author{Owen Sowatzke}
 \date{March 13, 2024}
@@ -120,6 +122,48 @@
 	
 	\begin{enumerate}
 		\item[(a)] Plot these six training points, and construct by inspection the weight vector for the optimal hyperplane, and the optimal margin.
+		
+		\begin{figure}[H]
+			\centerline{\fbox{\includegraphics[width=0.8\textwidth]{solution_by_inspection.png}}}
+			\caption{Training Samples with Weight Vector Found by Inspection}
+			\label{solution_by_inspection}
+		\end{figure}
+		
+		The linear discriminant function is given by inspection as:
+		
+		$y = -x + 1.5$		
+		
+		The weight vector is then given by scalar multiples of the following variables:
+		
+		\begin{equation*}
+			\mathbf{w} = \begin{bmatrix} 1 \\ 1 \end{bmatrix} \text{ and } b = -1.5
+		\end{equation*}
+		
+		We need to solve for the margin to determine the correct scaling.
+		
+		The optimal margin is given by
+		
+		\begin{equation*}
+			M = 2\frac{\langle\mathbf{u}, \mathbf{v}\rangle}{\norm{\mathbf{v}}^2}
+		\end{equation*}
+		
+		where $\mathbf{v} = \begin{bmatrix} 1 \\ -1 \end{bmatrix}$ and $\mathbf{u} = \begin{bmatrix} 0 \\ -0.5 \end{bmatrix}$
+		
+		\begin{equation*}
+			\Rightarrow M = 2(0.5)/\sqrt{2} = 1/\sqrt{2} 
+		\end{equation*}
+		
+		We can now solve for the required norm of the weight vector:
+		
+		\begin{equation*}
+			M = \frac{2}{\norm{\mathbf{w}}} \Rightarrow \norm{\mathbf{w}} = \frac{2}{M} = 2\sqrt{2}
+		\end{equation*}
+		
+		$\mathbf{w}$ currently has a norm of $\sqrt{2}$, so we must scale $\mathbf{w}$ and $b$ by $2$. Doing so results in the following:
+		
+		\begin{equation*}
+			\mathbf{w} = \begin{bmatrix} 2 \\ 2 \end{bmatrix} \text{ and } b = -3
+		\end{equation*}	
 		
 		\item[(b)] What are the support vectors?
 		
