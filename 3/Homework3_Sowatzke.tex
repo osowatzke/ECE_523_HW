@@ -60,19 +60,19 @@
 	
 	$\mathbf{x_4} = \varphi(\mathbf{x_4}) = [1,-\sqrt{2},\sqrt{2},-\sqrt{2},1,1]^T$
 	
-	Next, we can re-express the problem in a form suitable for quadratic programming. Quadratic programming can be used to find $\mathbf{x}$ which minimizes \newline $\frac{1}{2}\mathbf{x}^T\mathbf{H}\mathbf{x} + \mathbf{f}^T\mathbf{x}$ subject to $\mathbf{Ax} = \mathbf{b}$ and $\mathbf{x} \geq \mathbf{0}$.
-	
-	Note that we are trying to maximize:
+	Next, we want to find $\alpha_1$, $\alpha_2$, $\alpha_3$, and $\alpha_4$ which maximize:
 	
 	$\mathbf{Q(\boldsymbol{\alpha})} = \sum{a_i} - \frac{1}{2}\sum{\sum{\alpha_i\alpha_jy_iy_j\mathbf{x_i}^T\mathbf{x_j}}}$.
 	
 	subject to $\sum{a_iy_i} = 0$ and $\alpha_i > 0\ \forall\ i$.
 	
-	Because the function is quadratic, this is equivalent to minimizing:
+	We can solve this problem using quadratic programming. Quadratic programming finds $\mathbf{x}$ which minimizes $\frac{1}{2}\mathbf{x}^T\mathbf{H}\mathbf{x} + \mathbf{f}^T\mathbf{x}$ subject to $\mathbf{Ax} = \mathbf{b}$ \newline and $\mathbf{x} \geq \mathbf{0}$.
+
+	Because the function we are considering is quadratic, we can instead find the values of $\alpha_1$, $\alpha_2$, $\alpha_3$, and $\alpha_4$ which minimize:
 	
 	$-\mathbf{Q(\boldsymbol{\alpha})} = \frac{1}{2}\sum{\sum{\alpha_i\alpha_jy_iy_j\mathbf{x_i}^T\mathbf{x_j}}} - \sum{a_i}$
 	
-	Let $\mathbf{\hat{x}_i} = y_i\mathbf{x_i}$ (i.e. let $\mathbf{\hat{x}_i} = \mathbf{x_i}$ for class 1 and let $\mathbf{\hat{x}_i} = -\mathbf{x_i}$ for class 2).
+	Define $\mathbf{\hat{x}_i} = y_i\mathbf{x_i}$ (i.e. let $\mathbf{\hat{x}_i} = \mathbf{x_i}$ for class 1 and let $\mathbf{\hat{x}_i} = -\mathbf{x_i}$ for class 2).
 	
 	The nested sum can now be written as $\boldsymbol{\alpha}^T\mathbf{\hat{X}}^T\mathbf{\hat{X}}\boldsymbol{\alpha} = \boldsymbol{\alpha}^T\mathbf{H}\boldsymbol{\alpha}$ \newline where $\boldsymbol{\alpha} = [\alpha_1,\alpha_2,\alpha_3,\alpha_4]^T$ and $\mathbf{\hat{X}} = [\mathbf{\hat{x}_1},\mathbf{\hat{x}_2}, \mathbf{\hat{x}_3}, \mathbf{\hat{x}_4}]$.
 	
@@ -82,7 +82,7 @@
 	
 	Therefore, we can solve for $\boldsymbol{\alpha}$ which minimizes $\frac{1}{2}\boldsymbol{\alpha}^T\mathbf{H}\boldsymbol{\alpha} + \mathbf{f}^T\boldsymbol{\alpha}$ subject to $\mathbf{A}\boldsymbol{\alpha} = \mathbf{b}$ and $\boldsymbol{\alpha} \geq 0$, where $\mathbf{H}$, $\mathbf{f}$, $\mathbf{A}$, and $\mathbf{b}$ are given above.
 	
-	Doing so results in the following weight vector:
+	Doing so results in the following $\boldsymbol{\alpha}$ vector:
 	
 	\begin{equation*}
 		\boldsymbol{\alpha} = [1/8,1/8,1/8,1/8]^T
