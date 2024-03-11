@@ -219,6 +219,13 @@
 		J_{\tau}(\mathbf{a}) = \underset{\mathbf{a}^T\mathbf{y_i} \leq b_i}{\text{max}}[b_i - \mathbf{a}^T\mathbf{y_i}]
 	\end{equation*}
 	
-	Here, $\mathbf{a}$ is the weight vectors, $\mathbf{y_i}$ are the data vectors, and $\mathbf{b_i}$ are the scalar constants.
+	Here, $\mathbf{a}$ is the weight vectors, $\mathbf{y_i}$ are the data vectors, and $b_i$ are the scalar constants.
+	
+	$\mathbf{a}^T\mathbf{y_i} + \tau > b_i \Rightarrow \tau > b_i -  \mathbf{a}^T\mathbf{y_i}$
+	
+	Because we are trying to minimize $\tau$ with $\tau \geq 0$, the final value of $\tau$ corresponds to $\underset{\mathbf{a}^T\mathbf{y_i} \leq b_i}{\text{max}}[b_i - \mathbf{a}^T\mathbf{y_i}]$.
+	
+	$\therefore$ by minimizing $\tau$, we are also minimizing the criterion function $J_{\tau}(\mathbf{a})$
+	
 	\end{enumerate}
 \end{document}
