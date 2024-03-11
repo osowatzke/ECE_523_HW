@@ -38,7 +38,9 @@ X2 = [0 0;
       0 1].';
 
 % Create figure
-figure(1);
+f = figure(1);
+f.Position(3) = 420;
+f.Position(4) = 400;
 clf;
 hold on;
 
