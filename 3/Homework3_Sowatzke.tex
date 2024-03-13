@@ -56,39 +56,41 @@
 	
 	$\mathbf{x_1} = \varphi(\mathbf{x_1}) = [1,\sqrt{2},\sqrt{2},\sqrt{2},1,1]^T$
 	
-	$\mathbf{x_2} = \varphi(\mathbf{x_2}) = [1,-\sqrt{2},-\sqrt{2},\sqrt{2},1,1]^T$
+	$\mathbf{x_2} = \varphi(\mathbf{x_2}) = [1,\sqrt{2},-\sqrt{2},-\sqrt{2},1,1]^T$
 	
-	$\mathbf{x_3} = \varphi(\mathbf{x_3}) = [1,\sqrt{2},-\sqrt{2},-\sqrt{2},1,1]^T$
+	$\mathbf{x_3} = \varphi(\mathbf{x_3}) = [1,-\sqrt{2},-\sqrt{2},\sqrt{2},1,1]^T$
 	
 	$\mathbf{x_4} = \varphi(\mathbf{x_4}) = [1,-\sqrt{2},\sqrt{2},-\sqrt{2},1,1]^T$
 	
 	Next, we want to find $\alpha_1$, $\alpha_2$, $\alpha_3$, and $\alpha_4$ which maximize:
 	
-	$\mathbf{Q(\boldsymbol{\alpha})} = \sum{a_i} - \frac{1}{2}\sum{\sum{\alpha_i\alpha_jy_iy_j\mathbf{x_i}^T\mathbf{x_j}}}$.
+	$Q(\boldsymbol{\alpha}) = \sum{a_i} - \frac{1}{2}\sum{\sum{\alpha_i\alpha_jy_iy_j\mathbf{x_i}^T\mathbf{x_j}}}$.
 	
 	subject to $\sum{a_iy_i} = 0$ and $\alpha_i > 0\ \forall\ i$.
 	
-	We can solve this problem using quadratic programming. Quadratic programming finds $\mathbf{x}$ which minimizes $\frac{1}{2}\mathbf{x}^T\mathbf{H}\mathbf{x} + \mathbf{f}^T\mathbf{x}$ subject to $\mathbf{Ax} = \mathbf{b}$ \newline and $\mathbf{x} \geq \mathbf{0}$.
+	Start by writing $Q(\boldsymbol{\alpha})$ in matrix form:
 
-	Because the function we are considering is quadratic, we can instead find the values of $\alpha_1$, $\alpha_2$, $\alpha_3$, and $\alpha_4$ which minimize:
+	Let $\mathbf{f} = [1,1,1,1]^T$ and $\boldsymbol{\alpha} = [\alpha_1, \alpha_2, \alpha_3, \alpha_4]^T$.
 	
-	$-\mathbf{Q(\boldsymbol{\alpha})} = \frac{1}{2}\sum{\sum{\alpha_i\alpha_jy_iy_j\mathbf{x_i}^T\mathbf{x_j}}} - \sum{a_i}$
+	Then, $\sum{a_i} = \mathbf{f}^T\boldsymbol{\alpha}$
 	
-	Define $\mathbf{\hat{x}_i} = y_i\mathbf{x_i}$ (i.e. let $\mathbf{\hat{x}_i} = \mathbf{x_i}$ for class 1 and let $\mathbf{\hat{x}_i} = -\mathbf{x_i}$ for class 2).
+	Next, define $\mathbf{\hat{x}_i} = y_i\mathbf{x_i}$, $\mathbf{\hat{X}} = [\mathbf{\hat{x}_1},\mathbf{\hat{x}_2}, \mathbf{\hat{x}_3}, \mathbf{\hat{x}_4}]$, and $\mathbf{H} = \mathbf{\hat{X}}^T\mathbf{\hat{X}}$
 	
-	The nested sum can now be written as $\boldsymbol{\alpha}^T\mathbf{\hat{X}}^T\mathbf{\hat{X}}\boldsymbol{\alpha} = \boldsymbol{\alpha}^T\mathbf{H}\boldsymbol{\alpha}$ \newline where $\boldsymbol{\alpha} = [\alpha_1,\alpha_2,\alpha_3,\alpha_4]^T$ and $\mathbf{\hat{X}} = [\mathbf{\hat{x}_1},\mathbf{\hat{x}_2}, \mathbf{\hat{x}_3}, \mathbf{\hat{x}_4}]$.
+	Then, $\sum{\sum{\alpha_i\alpha_jy_iy_j\mathbf{x_i}^T\mathbf{x_j}}} = \boldsymbol{\alpha}^T\mathbf{H}\boldsymbol{\alpha}$ where $\mathbf{H}$ is symmetric.
 	
-	$-\sum{\alpha_i}$ can also be rewritten as $\mathbf{f}\boldsymbol{\alpha}$ with $\mathbf{f} = [-1,-1,-1,-1]^T$.
-	  
-	Furthermore, $\sum{\alpha_iy_i} = 0$ is equivalent to $\mathbf{A}\boldsymbol{\alpha} = \mathbf{b}$ where \newline $\mathbf{A} = [y_1,y_2,y_3,y_4] = [1,1,-1,-1]$ and $\mathbf{b} = 0$.
+	$\therefore Q(\boldsymbol{\alpha}) = \mathbf{f}^T\boldsymbol{\alpha} - \frac{1}{2}\boldsymbol{\alpha}^T\mathbf{H}\boldsymbol{\alpha}$
 	
-	Therefore, we can solve for $\boldsymbol{\alpha}$ which minimizes $\frac{1}{2}\boldsymbol{\alpha}^T\mathbf{H}\boldsymbol{\alpha} + \mathbf{f}^T\boldsymbol{\alpha}$ subject to $\mathbf{A}\boldsymbol{\alpha} = \mathbf{b}$ and $\boldsymbol{\alpha} \geq \mathbf{0}$, where $\mathbf{H}$, $\mathbf{f}$, $\mathbf{A}$, and $\mathbf{b}$ are given above.
+	Determine where $Q(\boldsymbol{\alpha})$ is maximized:
 	
-	Doing so results in the following $\boldsymbol{\alpha}$ vector:
+	$\nabla_{\boldsymbol{\alpha}}Q = \mathbf{f} - \mathbf{H}\boldsymbol{\alpha} = \mathbf{0} \Rightarrow \mathbf{H}\boldsymbol{\alpha} = \mathbf{f} \Rightarrow \boldsymbol{\alpha} = \mathbf{H}^{\dag}\mathbf{f} = \mathbf{H}^T(\mathbf{H}\mathbf{H}^T)^{-1}\mathbf{f}$
 	
-	\begin{equation*}
-		\boldsymbol{\alpha} = [1/8,1/8,1/8,1/8]^T
-	\end{equation*}
+	Plugging in values for $\mathbf{H}$ and $\mathbf{f}$, we find $\boldsymbol{\alpha} = [1/8,1/8,1/8,1/8]^T$
+	
+	Note that $\mathbf{A} = [1, -1, 1, -1] \Rightarrow \mathbf{A}\boldsymbol{\alpha} = 0$. Further note that $\alpha_i > 0$.
+	
+	$\therefore$ we have found the value of $\boldsymbol{\alpha}$ which maximizes $Q(\boldsymbol{\alpha})$ subject to \newline $\mathbf{A}\boldsymbol{\alpha} = 0$ and $\alpha_i > 0$.
+	
+	For this case, note that the maximum of $Q(\boldsymbol{\alpha})$ just happened to satisfy the additional constraints. If this was not the case, it would be best to use linear programming to find the solution instead.
 	
 	Now, we can solve for $\mathbf{w}$ as follows:
 	
