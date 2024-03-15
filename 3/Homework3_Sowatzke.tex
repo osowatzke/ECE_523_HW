@@ -286,33 +286,6 @@
 		
 		$\Rightarrow\boldsymbol{\alpha} = [3,0,1,0,3,1]^T$
 		
-		
-		
-		The result will satisfy $\nabla Q(\boldsymbol{\alpha}) = \lambda\nabla g(\boldsymbol{\alpha})$ where $g(\mathbf{\alpha}) = \mathbf{y}^T\boldsymbol{\alpha}$
-		
-		
-		Define the following variables:
-		
-		$\boldsymbol{\alpha} = [\alpha_1, \alpha_2, ..., \alpha_6]^T$
-		
-		$\mathbf{\hat{x}} = y_i\mathbf{x_i}$ where $y_i = 1$ for class 1 and $y_i = -1$ for class 2
-		
-		We can use quadratic programming to find $\boldsymbol{\alpha}$ which minimizes \newline $\frac{1}{2}\boldsymbol{\alpha}^T\mathbf{H}\boldsymbol{\alpha} + \mathbf{f}^T\boldsymbol{\alpha}$ subject to $\mathbf{A}\boldsymbol{\alpha} = \mathbf{b}$ and $\boldsymbol{\alpha} > \mathbf{0}$.
-		
-		Referring to the work in problem 1, we require that $\mathbf{H}$, $\mathbf{f}$, $\mathbf{A}$, and $\mathbf{b}$ be defined follows:		
-		
-		$\mathbf{H} = \mathbf{\hat{X}}^T\mathbf{\hat{X}}$ where $\mathbf{\hat{X}} = [\mathbf{\hat{x}_1}, \mathbf{\hat{x}_2}, ..., \mathbf{\mathbf{x}_6}]$
-		
-		$\mathbf{f} = [1, 1, 1, 1, 1, 1]^T$
-		
-		$\mathbf{A} = [y_1, y_2, ..., y_6] = [1, 1, 1, -1, -1, -1]$ 
-		
-		$\mathbf{b} = 0$
-		
-		Solving for $\boldsymbol{\alpha}$ using quadratic programming results in
-		
-		$\boldsymbol{\alpha} = [3.0174, 0, 0.9826, 0, 2.9826, 1.0174]^T$
-		
 		Next, we can solve for $\mathbf{w}$ as follows:
 		
 		$\mathbf{w} = \sum{\alpha_iy_i\mathbf{x_i}} = \mathbf{\hat{X}}\boldsymbol{\alpha} = \begin{bmatrix} 2 \\ 2 \end{bmatrix}$
