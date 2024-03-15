@@ -80,15 +80,19 @@
 	
 	$\therefore Q(\boldsymbol{\alpha}) = \mathbf{f}^T\boldsymbol{\alpha} - \frac{1}{2}\boldsymbol{\alpha}^T\mathbf{H}\boldsymbol{\alpha}$
 	
+	Define $\mathbf{y} = [y_1, y_2, y_3, y_4]^T \Rightarrow \sum{\alpha_iy_i} = \mathbf{y}^T\boldsymbol{\alpha}$.
+	
+	$\therefore$ we are trying to maximize $Q(\boldsymbol{\alpha})$ subject to $\mathbf{y}^T\boldsymbol{\alpha} = 0$ and $\alpha_i > 0\ \forall\ i$
+	
 	Determine where $Q(\boldsymbol{\alpha})$ is maximized:
 	
 	$\nabla_{\boldsymbol{\alpha}}Q = \mathbf{f} - \mathbf{H}\boldsymbol{\alpha} = \mathbf{0} \Rightarrow \mathbf{H}\boldsymbol{\alpha} = \mathbf{f} \Rightarrow \boldsymbol{\alpha} = \mathbf{H}^{\dag}\mathbf{f} = \mathbf{H}^T(\mathbf{H}\mathbf{H}^T)^{-1}\mathbf{f}$
 	
 	Plugging in values for $\mathbf{H}$ and $\mathbf{f}$, we find $\boldsymbol{\alpha} = [1/8,1/8,1/8,1/8]^T$
 	
-	Note that $\mathbf{A} = [1, -1, 1, -1] \Rightarrow \mathbf{A}\boldsymbol{\alpha} = 0$. Further note that $\alpha_i > 0$.
+	Note that $\mathbf{y} = [1, -1, 1, -1]^T \Rightarrow \mathbf{A}\boldsymbol{\alpha} = 0$. Further note that $\alpha_i > 0$.
 	
-	$\therefore$ we have found the value of $\boldsymbol{\alpha}$ which maximizes $Q(\boldsymbol{\alpha})$ subject to \newline $\mathbf{A}\boldsymbol{\alpha} = 0$ and $\alpha_i > 0$.
+	$\therefore$ we have found the value of $\boldsymbol{\alpha}$ which maximizes $Q(\boldsymbol{\alpha})$ subject to \newline $\mathbf{y}^T\boldsymbol{\alpha} = 0$ and $\alpha_i > 0$.
 	
 	For this case, note that the maximum of $Q(\boldsymbol{\alpha})$ just happened to satisfy the additional constraints. If this was not the case, it would be best to use linear programming to find the solution instead.
 	
