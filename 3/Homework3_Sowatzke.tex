@@ -179,6 +179,37 @@
 		
 		\item[(c)] Construct the solution in the dual space by finding the Lagrange undetermined multipliers, $\alpha_i$. Compare your result to that in \newline part (a).
 		
+		To find the support vectors, and the corresponding weight vector, we need to maximize		
+		
+		$Q(\boldsymbol{\alpha}) = \sum{a_i} - \frac{1}{2}\sum{\sum{\alpha_i\alpha_jy_iy_j\mathbf{x_i}^T\mathbf{x_j}}}$.
+	
+	subject to $\sum{a_iy_i} = 0$ and $\alpha_i > 0\ \forall\ i$.
+	
+		As demonstrated in problem 1, we can rewrite these equations in matrix-vector form. This results in us needing to maximize
+		
+		$Q(\boldsymbol{\alpha}) = \mathbf{f}^T\boldsymbol{\alpha} - \frac{1}{2}\boldsymbol{\alpha}^T\mathbf{H}\boldsymbol{\alpha}$
+		
+		subject to $\mathbf{y}^T\boldsymbol{\alpha} = 0$ and $\alpha_i > 0\ \forall\ i > 0$.
+		
+		In the above equations, $\mathbf{f} = [1, ..., 1]^T$, $\boldsymbol{\alpha} = [\alpha_1, ..., \alpha_N]^T$, \newline $\mathbf{y} = [y_1,...,y_N]^T$, and $\mathbf{H} = \mathbf{\hat{X}}^T\mathbf{\hat{X}}$ with $\mathbf{\hat{X}} = [\mathbf{\hat{x}_1}, ..., \mathbf{\hat{x}_N}]^T$ \newline and $\mathbf{\hat{x}_i} = y_i\mathbf{x_i}$.
+
+		We can use constrained optimization, to determine $\boldsymbol{\alpha}$, which \newline maximizes $Q(\boldsymbol{\alpha})$ subject to $\mathbf{y}^T\boldsymbol{\alpha} = 0$.
+		
+		Define the Lagrangian as $L(\boldsymbol{\alpha},\lambda) = Q(\boldsymbol{\alpha}) + \lambda g(\boldsymbol{\alpha})$ where $g(\boldsymbol{\alpha}) = \mathbf{y}^T\boldsymbol{\alpha}$
+		
+		$\Rightarrow L(\boldsymbol{\alpha},\lambda) = \mathbf{f}^T\boldsymbol{\alpha} - \frac{1}{2}\boldsymbol{\alpha}^T\mathbf{H}\boldsymbol{\alpha} + \lambda(\mathbf{y}^T\boldsymbol{\alpha})$
+		
+		At the constrained maximum, $\nabla_{\boldsymbol{\alpha}}L(\boldsymbol{\alpha},\lambda) = 0$ and $\nabla_{\lambda}L(\boldsymbol{\alpha},\lambda) = 0$ 
+		
+		$\Rightarrow \nabla_{\boldsymbol{\alpha}}L(\boldsymbol{\alpha},\lambda) = \mathbf{f} - \mathbf{H}\boldsymbol{\alpha} + \lambda\mathbf{y} = \mathbf{0} \Rightarrow \mathbf{H}\boldsymbol{\alpha} - \lambda\mathbf{y} = \mathbf{f}$
+		
+		$\Rightarrow \nabla_{\lambda}L(\boldsymbol{\alpha},\lambda) = \mathbf{y}^T\boldsymbol{\alpha} = \mathbf{0}$
+		
+		Let $\mathbf{x} = \begin{bmatrix} \boldsymbol{\alpha}\\ \lambda \end{bmatrix}$
+		
+		The result will satisfy $\nabla Q(\boldsymbol{\alpha}) = \lambda\nabla g(\boldsymbol{\alpha})$ where $g(\mathbf{\alpha}) = \mathbf{y}^T\boldsymbol{\alpha}$
+		
+		
 		Define the following variables:
 		
 		$\boldsymbol{\alpha} = [\alpha_1, \alpha_2, ..., \alpha_6]^T$
