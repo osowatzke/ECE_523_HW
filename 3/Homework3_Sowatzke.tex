@@ -316,9 +316,11 @@
 	
 	$\mathbf{a}^T\mathbf{y_i} + \tau > b_i \Rightarrow \tau > b_i -  \mathbf{a}^T\mathbf{y_i}$
 	
-	Because we are trying to minimize $\tau$ with $\tau \geq 0$, the final value of $\tau$ corresponds to $\underset{\mathbf{a}^T\mathbf{y_i} \leq b_i}{\text{max}}[b_i - \mathbf{a}^T\mathbf{y_i}]$.
+	The smallest possible value of $\tau$ corresponds to $\underset{\mathbf{a}^T\mathbf{y_i} \leq b_i}{\text{max}}[b_i - \mathbf{a}^T\mathbf{y_i}]$.
 	
-	$\therefore$ by minimizing $\tau$, we are also minimizing the criterion function $J_{\tau}(\mathbf{a})$
+	Thus, $\tau$ serves as an upper bound to the criterion function. As we reduce $\tau$, we are effectively minimizing the criterion function $J_{\tau}(\mathbf{a})$ as well.
+	
+	
 	
 	\end{enumerate}
 \end{document}
