@@ -196,7 +196,7 @@
 		
 		$Q(\boldsymbol{\alpha}) = \mathbf{f}^T\boldsymbol{\alpha} - \frac{1}{2}\boldsymbol{\alpha}^T\mathbf{H}\boldsymbol{\alpha}$
 		
-		subject to $\mathbf{y}^T\boldsymbol{\alpha} = 0$ and $\alpha_i > 0\ \forall\ i > 0$.
+		subject to $\mathbf{y}^T\boldsymbol{\alpha} = 0$ and $\alpha_i > 0\ \forall\ i$.
 		
 		In the above equations, $\mathbf{f} = [1, ..., 1]^T$, $\boldsymbol{\alpha} = [\alpha_1, ..., \alpha_N]^T$, \newline $\mathbf{y} = [y_1,...,y_N]^T$, and $\mathbf{H} = \mathbf{\hat{X}}^T\mathbf{\hat{X}}$ with $\mathbf{\hat{X}} = [\mathbf{\hat{x}_1}, ..., \mathbf{\hat{x}_N}]^T$ \newline and $\mathbf{\hat{x}_i} = y_i\mathbf{x_i}$.
 
@@ -204,7 +204,7 @@
 		
 		Define the Lagrangian as $L(\boldsymbol{\alpha},\lambda) = Q(\boldsymbol{\alpha}) + \lambda g(\boldsymbol{\alpha})$ where $g(\boldsymbol{\alpha}) = \mathbf{y}^T\boldsymbol{\alpha}$
 		
-		$\Rightarrow L(\boldsymbol{\alpha},\lambda) = \mathbf{f}^T\boldsymbol{\alpha} - \frac{1}{2}\boldsymbol{\alpha}^T\mathbf{H}\boldsymbol{\alpha} + \lambda(\mathbf{y}^T\boldsymbol{\alpha})$
+		$\Rightarrow L(\boldsymbol{\alpha},\lambda) = \mathbf{f}^T\boldsymbol{\alpha} - \frac{1}{2}\boldsymbol{\alpha}^T\mathbf{H}\boldsymbol{\alpha} + \lambda\mathbf{y}^T\boldsymbol{\alpha}$
 		
 		At the constrained maximum, $\nabla_{\boldsymbol{\alpha}}L(\boldsymbol{\alpha},\lambda) = 0$ and $\nabla_{\lambda}L(\boldsymbol{\alpha},\lambda) = 0$ 
 		
@@ -218,9 +218,9 @@
 		
 		$\mathbf{A}\mathbf{x} = \mathbf{b}$
 		
-		The above equation does not enforce $\alpha_i \geq 0$.
+		Note that the set of equations does not enforce $\alpha_i \geq 0\ \forall\ i$.
 		
-		Therefore, we have to force $\alpha_i = 0$ for all combinations of $\alpha_i$ and observe the result.
+		Therefore, we have to force $\alpha_i = 0$ for all possible combinations of $\alpha_i$ and observe the result.
 		
 		To force a given $\alpha_i = 0$, we should zero out to column in $\mathbf{A}$ which corresponds to that $\alpha_i$. Additionally, we should remove the row in the matrix-vector equation which corresponds to $\frac{\partial{L(\boldsymbol{\alpha},\lambda)}}{\partial\alpha_i} = 0$
 		
@@ -228,7 +228,7 @@
 		 
 		 To determine the best selection of $\alpha_i$, we can compare $Q(\boldsymbol{\alpha})$ for all valid combinations of $\alpha_i$. The collection of $\alpha_i$ which maximizes $Q(\boldsymbol{\alpha})$ is the solution.
 		
-		To save time, we can use knowledge of the support vectors from part (b) to determine which $\alpha_i$ to set to zero. This results in the following matrix-vector equation:
+		Because we have prior knowledge of the support vectors from part (b), we know which $\alpha_i$'s to set to zero. If we force these $\alpha_i$'s ($\alpha_2$ and $\alpha_4$) to zero, the following matrix-vector equation results:
 		
 		\begin{equation*}
 			\begin{bmatrix}
@@ -244,7 +244,7 @@
 			\end{bmatrix}
 		\end{equation*}
 		
-		We can now convert this matrix to reduced row echelon form:
+		We can convert this matrix to reduced row echelon form:
 		
 		\begin{equation*}
 			\begin{bmatrix}[ccccccc|c]
@@ -286,7 +286,9 @@
 		
 		$\Rightarrow\boldsymbol{\alpha} = [3,0,1,0,3,1]^T$
 		
-		Next, we can solve for $\mathbf{w}$ as follows:
+		We could repeat this process for all combinations of $\alpha_i$ and compare $Q(\boldsymbol{\alpha})$ for the valid combinations. However, this solution was derived using the support vectors, so it is the best solution.
+		
+		Using the resulting $\boldsymbol{\alpha}$ vector, we can solve for $\mathbf{w}$ as follows:
 		
 		$\mathbf{w} = \sum{\alpha_iy_i\mathbf{x_i}} = \mathbf{\hat{X}}\boldsymbol{\alpha} = \begin{bmatrix} 2 \\ 2 \end{bmatrix}$
 		
