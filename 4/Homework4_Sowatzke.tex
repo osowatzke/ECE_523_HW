@@ -67,5 +67,26 @@
 		\end{figure}
 		
 		\item Assume that a network produces the output $y_i$ in response to the i-th training image from class 1, and the output $x_i$ in response to the i-th training image from class 2. We wish to train the network to maximize the cost function $J(\text{net}) = \frac{\sum_{1}^{N}{y_i^2}}{\sum_{1}^{N}{x_i^2}}$. Derive the gradient for this cost function and describe how the network updates might be made using batch training and a single image at a time.
+		
+		We can re-express the gradient in matrix-vector notation as follows:
+		
+		\begin{equation*}
+			J(\text{net}) = \frac{\mathbf{y}^T\mathbf{y}}{\mathbf{x}^T\mathbf{x}}
+		\end{equation*}
+		
+		where $\mathbf{x} = \begin{bmatrix}x_1 & x_2 & \cdots & x_N \end{bmatrix}^T$ and $\mathbf{y} = \begin{bmatrix}y_1 & y_2 & \cdots & y_N \end{bmatrix}^T$
+		
+		\begin{equation*}
+			\nabla_{\mathbf{y}}{J} = \frac{2\mathbf{y}}{\mathbf{x}^T\mathbf{x}} \ \text{and}\ \nabla_{\mathbf{x}}{J} = -\frac{2\mathbf{x}\mathbf{y}^T\mathbf{y}}{(\mathbf{x}^T\mathbf{x})^2}
+		\end{equation*}
+		
+		Define $\mathbf{z} = \begin{bmatrix} \mathbf{y} \\ \mathbf{x} \end{bmatrix}$. Then, we can express $\nabla_{\mathbf{z}}{J}$ as follows:
+		
+		\begin{equation*}
+			\nabla_{\mathbf{z}}{J} = \begin{bmatrix}
+				\frac{2\mathbf{y}}{\mathbf{x}^T\mathbf{x}} \\[3pt]
+				-\frac{2\mathbf{x}\mathbf{y}^T\mathbf{y}}{(\mathbf{x}^T\mathbf{x})^2}
+			\end{bmatrix}
+		\end{equation*}
 	\end{enumerate}
 \end{document}
