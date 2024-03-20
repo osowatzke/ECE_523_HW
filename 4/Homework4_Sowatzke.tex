@@ -50,5 +50,22 @@
 			\label{neural_network_3_layer}
 		\end{figure}
 	
+		The output of the neural network is given by $\mathbf{y} = Q_1(\mathbf{F_1}Q_2(\mathbf{F_2}\mathbf{x}))$ where $Q_2(\boldsymbol{\alpha})$ is the activation function of the hidden layer.
+		
+		If $Q_2(\boldsymbol{\alpha})$ is linear it can be rewritten as $\mathbf{H}\boldsymbol{\alpha}$. If we substitute this expression for the hidden layer into the above formula, we get the following:
+		
+		$\mathbf{y} = Q_1(\mathbf{F_1}Q_2(\mathbf{F_2}\mathbf{x})) = Q_1(\mathbf{F_1H(F_2\mathbf{x})}) = Q_1(\mathbf{F_1HF_2x}) = Q_1(\mathbf{Ax})$
+		
+		where $\mathbf{A} = \mathbf{F_1HF_2}$.
+		
+		Therefore, the neural network is equivalent to two-layer neural network.
+		
+		\begin{figure}[H]
+			\centerline{\fbox{\includegraphics[width=0.4\textwidth]{neural_network_2_layer.png}}}
+			\caption{2-Layer Neural Network}
+			\label{neural_network_2_layer}
+		\end{figure}
+		
+		\item Assume that a network produces the output $y_i$ in response to the i-th training image from class 1, and the output $x_i$ in response to the i-th training image from class 2. We wish to train the network to maximize the cost function $J(\text{net}) = \frac{\sum_{1}^{N}{y_i^2}}{\sum_{1}^{N}{x_i^2}}$. Derive the gradient for this cost function and describe how the network updates might be made using batch training and a single image at a time.
 	\end{enumerate}
 \end{document}
