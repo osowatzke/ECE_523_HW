@@ -66,7 +66,7 @@
 			\label{neural_network_2_layer}
 		\end{figure}
 		
-		\item Assume that a network produces the output $y_i$ in response to the i-th training image from class 1, and the output $x_i$ in response to the i-th training image from class 2. We wish to train the network to maximize the cost function $J(\text{net}) = \frac{\sum_{1}^{N}{y_i^2}}{\sum_{1}^{N}{x_i^2}}$. Derive the gradient for this cost function and describe how the network updates might be made using batch training and a single image at a time.
+		\item Assume that a network produces the output $y_i$ in response to the i-th training image from class 1, and the output $x_i$ in response to the i-th training image from class 2. We wish to train the network to maximize the cost function $J(\text{net}) = \frac{\sum_{i=1}^{N}{y_i^2}}{\sum_{i=1}^{N}{x_i^2}}$. Derive the gradient for this cost function and describe how the network updates might be made using batch training and a single image at a time.
 		
 		We can re-express the gradient in matrix-vector notation as follows:
 		
@@ -87,6 +87,12 @@
 				\frac{2\mathbf{y}}{\mathbf{x}^T\mathbf{x}} \\[3pt]
 				-\frac{2\mathbf{x}\mathbf{y}^T\mathbf{y}}{(\mathbf{x}^T\mathbf{x})^2}
 			\end{bmatrix}
+		\end{equation*}
+		
+		In other words
+		
+		\begin{equation*}
+			\frac{\partial{J}}{\partial{y_i}} = \frac{2y_i}{\sum_{i=1}^{N}x_i^2}\ \text{and}\ \frac{\partial{J}}{\partial{x_i}} = -\frac{2x_i\sum_{i=1}^{N}y_i^2}{\left(\sum_{i=1}^{N}x_i^2\right)^2}
 		\end{equation*}
 	\end{enumerate}
 \end{document}
