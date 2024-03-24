@@ -4,6 +4,8 @@
 \usepackage{amssymb}
 \usepackage{enumitem}
 \usepackage{etoolbox}
+\usepackage[normalem]{ulem}
+\usepackage[hidelinks,colorlinks=true,urlcolor=blue,linkcolor=black]{hyperref}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{changepage}
@@ -22,6 +24,16 @@
   \end{minipage}
   %\par\vspace{\intextsep}% Assume in-text placement, so insert appropriate vertical spacing
 }
+
+\makeatletter
+\begingroup
+  \catcode`\$=6 %
+  \catcode`\#=12 %
+  \gdef\href@split$1#$2#$3\\$4{%
+    \hyper@@link{$1}{$2}{\uline{$4}}% or \underline
+    \endgroup
+  }%
+\endgroup
 
 \newcommand{\zerodisplayskip}{
 	\setlength{\abovedisplayskip}{0pt}%
@@ -96,5 +108,19 @@
 		\end{equation*}
 		
 		The network updates can be made using batch training or a single image at time. When using batch training, the gradient is averaged over all the training images before an update is made. Conversely, when using a single image at a time, the updates are made after each training image is processed using the gradient for that image. In either case, the gradient (or average gradient) can be computed with respect to each of the neural network's intermediate parameters using backpropogation. (Backpropogation computes the intermediate gradients by applying the chain rule). Once each of the gradients have been computed, gradient descent can be used to update each of the weights.
+		
+		\item Using the IRIS data set available at \href{https://en.wikipedia.org/wiki/IRIS_flower_data_set}{https://en.wikipedia.org/wiki/\\IRIS\_flower\_data\_set}, design a neural network classifier. The network should have two fully connected layers. The first layer should have 2 input neurons and 5 output neurons. The second layer should have 5 input neurons and 3 outputs neurons. For each input, the output should be a 3 element vector with "1" for the correct class, and "0" corresponding to the other two classes. You may use 40 samples from each class for training, and test with the remaining. Use the ReLu function as the nonlinearity between the layers.
+		
+		\begin{enumerate}
+			\item[1)] Tabulate the results in terms of classification accuracy
+			
+			\item[2)] What are the number of parameters that the network must learn? How does that compare to the amount of training data?
+			
+			The network must learn a $2 \times 5$ matrix plus a $5 \times 1$ bias for the first fully connected layer and a $5 \times 3$ matrix plus a $3 \times 1$ bias for the second fully connected layer. Thus, the network must learn a total of 33 parameters. This is as significant number of parameters given the size of the training data set (120). Specifically, the number of learnable parameters is 27.5\% the size of the training data set. 
+			
+			\item[3)] How accurate is the training process, and how does it compare to the test results?
+		\end{enumerate}
+		
+		Submit your code along with your answers.
 	\end{enumerate}
 \end{document}
