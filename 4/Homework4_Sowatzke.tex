@@ -94,5 +94,7 @@
 		\begin{equation*}
 			\frac{\partial{J}}{\partial{y_i}} = \frac{2y_i}{\sum_{i=1}^{N}x_i^2}\ \text{and}\ \frac{\partial{J}}{\partial{x_i}} = -\frac{2x_i\sum_{i=1}^{N}y_i^2}{\left(\sum_{i=1}^{N}x_i^2\right)^2}
 		\end{equation*}
+		
+		The network updates can be made using batch training or a single image at time. When using batch training, the gradient is averaged over all the training images before an update is made. Conversely, when using a single image at a time, the updates are made after each training image is processed using the gradient for that image. In either case, the gradient (or average gradient) can be computed with respect to each of the neural network's intermediate parameters using backpropogation. (Backpropogation computes the intermediate gradients by applying the chain rule). Once each of the gradients have been computed, gradient descent can be used to update each of the weights.
 	\end{enumerate}
 \end{document}
