@@ -111,14 +111,34 @@
 		
 		\item Using the IRIS data set available at \href{https://en.wikipedia.org/wiki/IRIS_flower_data_set}{https://en.wikipedia.org/wiki/\\IRIS\_flower\_data\_set}, design a neural network classifier. The network should have two fully connected layers. The first layer should have 2 input neurons and 5 output neurons. The second layer should have 5 input neurons and 3 outputs neurons. For each input, the output should be a 3 element vector with "1" for the correct class, and "0" corresponding to the other two classes. You may use 40 samples from each class for training, and test with the remaining. Use the ReLu function as the nonlinearity between the layers.
 		
+		For the computer exercise, the neural network required only 2 of the 4 features. Therefore, I had to chose 2 features from the input dataset. I chose features 3 and 4 because they resulted in better classification accuracy.
+		
+		\pagebreak
 		\begin{enumerate}
 			\item[1)] Tabulate the results in terms of classification accuracy
+			
+			\begin{figure}[H]
+				\centerline{\fbox{\includegraphics[width=0.8\textwidth]{test_data_results.png}}}
+				\caption{Test Data Results Output by Function}
+				\label{test_data_results}
+			\end{figure}
+		
+			Referring to the figure above, the classification accuracy for the test data was 96.67\%.
 			
 			\item[2)] What are the number of parameters that the network must learn? How does that compare to the amount of training data?
 			
 			The network must learn a $2 \times 5$ matrix plus a $5 \times 1$ bias for the first fully connected layer and a $5 \times 3$ matrix plus a $3 \times 1$ bias for the second fully connected layer. Thus, the network must learn a total of 33 parameters. This is as significant number of parameters given the size of the training data set (120). Specifically, the number of learnable parameters is 27.5\% the size of the training data set. 
 			
 			\item[3)] How accurate is the training process, and how does it compare to the test results?
+			
+			\begin{figure}[H]
+				\centerline{\fbox{\includegraphics[width=0.8\textwidth]{test_data_results.png}}}
+				\caption{Training Data Results Output by Function}
+				\label{training_data_results}
+			\end{figure}
+		
+			Referring to the figure above, the classification accuracy for the training data was 95.83\%. This is roughly the same as the test data set, which implies that the training data set is representative of the test data set. The slight performance decrease for the training data set is most likely due to the random selection of training data.
+			
 		\end{enumerate}
 		
 		Submit your code along with your answers.
