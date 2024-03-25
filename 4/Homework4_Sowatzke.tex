@@ -10,6 +10,7 @@
 \usepackage{float}
 \usepackage{changepage}
 \usepackage{environ,capt-of}
+\usepackage{matlab-prettifier}
 
 \let\oldfigure\figure% Store original figure float environment
 \let\endoldfigure\endfigure
@@ -142,5 +143,17 @@
 		\end{enumerate}
 		
 		Submit your code along with your answers.
+		
+		The code for this problem is included in Appendix \ref{neural_network} and as a separate file with the submission.
+		
 	\end{enumerate}
+	
+	\pagebreak
+	\appendix
+	\section{Neural Network}
+	\label{neural_network}
+	\lstset{style=Matlab-editor,basicstyle=\ttfamily\footnotesize}
+	\lstinputlisting{Homework4_Sowatzke.m}
+	\raggedbottom
+	\pagebreak
 \end{document}

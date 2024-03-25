@@ -65,7 +65,8 @@ predictedLabels = classes(I);
 % Create confusion matrix for training data set
 confusionMatrix = zeros(length(classes));
 for i = 1:length(classes)
-    classPredictions = predictedLabels(trainingLabels == classes(i));
+    sampleSelect = (trainingLabels == classes(i));
+    classPredictions = predictedLabels(sampleSelect);
     confusionMatrix(i,:) = sum(classPredictions == classes.');
 end
 disp('Confusion Matrix for Training Dataset:')
@@ -86,7 +87,8 @@ predictedLabels = classes(I);
 % Create confusion matrix for test data set
 confusionMatrix = zeros(length(classes));
 for i = 1:length(classes)
-    classPredictions = predictedLabels(testLabels == classes(i));
+    sampleSelect = (testLabels == classes(i));
+    classPredictions = predictedLabels(sampleSelect);
     confusionMatrix(i,:) = sum(classPredictions == classes.');
 end
 disp('Confusion Matrix for Test Dataset:')
