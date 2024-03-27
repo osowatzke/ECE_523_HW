@@ -63,15 +63,29 @@
 			\label{neural_network_3_layer}
 		\end{figure}
 	
-		The output of the neural network is given by $\mathbf{y} = Q_1(\mathbf{F_1}Q_2(\mathbf{F_2}\mathbf{x}))$ where $Q_2(\boldsymbol{\alpha})$ is the activation function of the hidden layer.
+		The output of the neural network is given by:
 		
-		If $Q_2(\boldsymbol{\alpha})$ is linear it can be rewritten as $\mathbf{H}\boldsymbol{\alpha}$. If we substitute this expression for the hidden layer into the above formula, we get the following:
+		$\mathbf{y} = Q_2(\mathbf{A_2}Q_1(\mathbf{A_1}\mathbf{x} + \mathbf{b_1}) + \mathbf{b_2})$
 		
-		$\mathbf{y} = Q_1(\mathbf{F_1}Q_2(\mathbf{F_2}\mathbf{x})) = Q_1(\mathbf{F_1H(F_2\mathbf{x})}) = Q_1(\mathbf{F_1HF_2x}) = Q_1(\mathbf{Ax})$
+		where $Q_1(\boldsymbol{\alpha})$ is the activation function of the hidden layer.
 		
-		where $\mathbf{A} = \mathbf{F_1HF_2}$.
+		If $Q_1(\boldsymbol{\alpha})$ is linear, it can be rewritten as $\mathbf{A_3}\boldsymbol{\alpha} + \mathbf{b_3}$. 
 		
-		Therefore, the neural network is equivalent to two-layer neural network.
+		$\Rightarrow Q_1(\mathbf{A_1}\mathbf{x} + \mathbf{b_1}) = \mathbf{A_3}(\mathbf{A_1}\mathbf{x} + \mathbf{b_1}) + \mathbf{b_3} = \mathbf{A_3}\mathbf{A_1}\mathbf{x} + \mathbf{A_3}\mathbf{b_1} + \mathbf{b_3}$
+		
+		Let $\mathbf{A_4} = \mathbf{A_3}\mathbf{A_1}$ and $\mathbf{b_4} = \mathbf{A_3}\mathbf{b_1} + \mathbf{b_3}$
+		
+		$\Rightarrow Q_1(\mathbf{A_1}\mathbf{x} + \mathbf{b_1}) = \mathbf{A_4}\mathbf{x} + \mathbf{b_4}$
+		
+		$\therefore$ the output of the neural network is given by:
+		
+		$\mathbf{y} = Q_2(\mathbf{A_2}(\mathbf{A_4}\mathbf{x} + \mathbf{b_4}) + \mathbf{b_2})) = Q_2(\mathbf{A_2}\mathbf{A_4}\mathbf{x} + \mathbf{A_2}\mathbf{b_4} + \mathbf{b_2})$
+		
+		Let $\mathbf{A} = \mathbf{A_2}\mathbf{A_4}$ and $\mathbf{b} = \mathbf{A_2}\mathbf{b_4} + \mathbf{b_1}$
+		
+		$\Rightarrow \mathbf{y} = Q_2(\mathbf{A}\mathbf{x} + \mathbf{b})$
+		
+		Note that $\mathbf{A}$ is a matrix and $\mathbf{b}$ is a vector. Therefore, a three layer neural network with a linear activation function for its hidden layer is equivalent to two-layer neural network.
 		
 		\begin{figure}[H]
 			\centerline{\fbox{\includegraphics[width=0.4\textwidth]{neural_network_2_layer.png}}}
@@ -90,9 +104,10 @@
 		where $\mathbf{x} = \begin{bmatrix}x_1 & x_2 & \cdots & x_N \end{bmatrix}^T$ and $\mathbf{y} = \begin{bmatrix}y_1 & y_2 & \cdots & y_N \end{bmatrix}^T$
 		
 		\begin{equation*}
-			\nabla_{\mathbf{y}}{J} = \frac{2\mathbf{y}}{\mathbf{x}^T\mathbf{x}} \ \text{and}\ \nabla_{\mathbf{x}}{J} = -\frac{2\mathbf{x}\mathbf{y}^T\mathbf{y}}{(\mathbf{x}^T\mathbf{x})^2}
+			\Rightarrow \nabla_{\mathbf{y}}{J} = \frac{2\mathbf{y}}{\mathbf{x}^T\mathbf{x}} \ \text{and}\ \nabla_{\mathbf{x}}{J} = -\frac{2\mathbf{x}\mathbf{y}^T\mathbf{y}}{(\mathbf{x}^T\mathbf{x})^2}
 		\end{equation*}
 		
+		\pagebreak
 		Define $\mathbf{z} = \begin{bmatrix} \mathbf{y} \\ \mathbf{x} \end{bmatrix}$. Then, we can express $\nabla_{\mathbf{z}}{J}$ as follows:
 		
 		\begin{equation*}
@@ -102,19 +117,17 @@
 			\end{bmatrix}
 		\end{equation*}
 		
-		In other words
-		
 		\begin{equation*}
-			\frac{\partial{J}}{\partial{y_i}} = \frac{2y_i}{\sum_{i=1}^{N}x_i^2}\ \text{and}\ \frac{\partial{J}}{\partial{x_i}} = -\frac{2x_i\sum_{i=1}^{N}y_i^2}{\left(\sum_{i=1}^{N}x_i^2\right)^2}
+			\Rightarrow \frac{\partial{J}}{\partial{y_i}} = \frac{2y_i}{\sum_{i=1}^{N}x_i^2}\ \text{and}\ \frac{\partial{J}}{\partial{x_i}} = -\frac{2x_i\sum_{i=1}^{N}y_i^2}{\left(\sum_{i=1}^{N}x_i^2\right)^2}
 		\end{equation*}
 		
 		The network updates can be made using batch training or a single image at time. When using batch training, the gradient is averaged over all the training images before an update is made. Conversely, when using a single image at a time, the updates are made after each training image is processed using the gradient for that image. In either case, the gradient (or average gradient) can be computed with respect to each of the neural network's intermediate parameters using backpropogation. (Backpropogation computes the intermediate gradients by applying the chain rule). Once each of the gradients have been computed, gradient descent can be used to update each of the weights.
 		
 		\item Using the IRIS data set available at \href{https://en.wikipedia.org/wiki/IRIS_flower_data_set}{https://en.wikipedia.org/wiki/\\IRIS\_flower\_data\_set}, design a neural network classifier. The network should have two fully connected layers. The first layer should have 2 input neurons and 5 output neurons. The second layer should have 5 input neurons and 3 outputs neurons. For each input, the output should be a 3 element vector with "1" for the correct class, and "0" corresponding to the other two classes. You may use 40 samples from each class for training, and test with the remaining. Use the ReLu function as the nonlinearity between the layers.
 		
+		\pagebreak
 		For the computer exercise, the neural network required only 2 of the 4 features. Therefore, I had to chose 2 features from the input dataset. I chose features 3 and 4 because they resulted in better classification accuracy.
 		
-		\pagebreak
 		\begin{enumerate}
 			\item[1)] Tabulate the results in terms of classification accuracy
 			
