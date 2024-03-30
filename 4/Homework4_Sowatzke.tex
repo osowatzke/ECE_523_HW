@@ -81,7 +81,7 @@
 		
 		$\mathbf{y} = Q_2(\mathbf{A_2}(\mathbf{A_4}\mathbf{x} + \mathbf{b_4}) + \mathbf{b_2})) = Q_2(\mathbf{A_2}\mathbf{A_4}\mathbf{x} + \mathbf{A_2}\mathbf{b_4} + \mathbf{b_2})$
 		
-		Let $\mathbf{A} = \mathbf{A_2}\mathbf{A_4}$ and $\mathbf{b} = \mathbf{A_2}\mathbf{b_4} + \mathbf{b_1}$
+		Let $\mathbf{A} = \mathbf{A_2}\mathbf{A_4}$ and $\mathbf{b} = \mathbf{A_2}\mathbf{b_4} + \mathbf{b_2}$
 		
 		$\Rightarrow \mathbf{y} = Q_2(\mathbf{A}\mathbf{x} + \mathbf{b})$
 		
@@ -93,9 +93,9 @@
 			\label{neural_network_2_layer}
 		\end{figure}
 		
-		\item Assume that a network produces the output $y_i$ in response to the i-th training image from class 1, and the output $x_i$ in response to the i-th training image from class 2. We wish to train the network to maximize the cost function $J(\text{net}) = \frac{\sum_{i=1}^{N}{y_i^2}}{\sum_{i=1}^{N}{x_i^2}}$. Derive the gradient for this cost function and describe how the network updates might be made using batch training and a single image at a time.
+		\item Assume that a network produces the output $y_i$ in response to the i-th training image from class 1, and the output $x_i$ in response to the i-th training image from class 2. We wish to train the network to maximize the cost function $J(\text{net}) = \frac{\sum_{i}^{N}{y_i^2}}{\sum_{i}^{N}{x_i^2}}$. Derive the gradient for this cost function and describe how the network updates might be made using batch training and a single image at a time.
 		
-		We can re-express the gradient in matrix-vector notation as follows:
+		We can re-express the cost function in matrix-vector notation as follows:
 		
 		\begin{equation*}
 			J(\text{net}) = \frac{\mathbf{y}^T\mathbf{y}}{\mathbf{x}^T\mathbf{x}}
@@ -103,11 +103,12 @@
 		
 		where $\mathbf{x} = \begin{bmatrix}x_1 & x_2 & \cdots & x_N \end{bmatrix}^T$ and $\mathbf{y} = \begin{bmatrix}y_1 & y_2 & \cdots & y_N \end{bmatrix}^T$
 		
-		\begin{equation*}
-			\Rightarrow \nabla_{\mathbf{y}}{J} = \frac{2\mathbf{y}}{\mathbf{x}^T\mathbf{x}} \ \text{and}\ \nabla_{\mathbf{x}}{J} = -\frac{2\mathbf{x}\mathbf{y}^T\mathbf{y}}{(\mathbf{x}^T\mathbf{x})^2}
-		\end{equation*}
+		Solving for the gradient of $J$ with respect to $\mathbf{x}$ and $\mathbf{y}$, we get the following: 
 		
-		\pagebreak
+		\begin{equation*}
+			\nabla_{\mathbf{y}}{J} = \frac{2\mathbf{y}}{\mathbf{x}^T\mathbf{x}} \ \text{and}\ \nabla_{\mathbf{x}}{J} = -\frac{2\mathbf{x}\mathbf{y}^T\mathbf{y}}{(\mathbf{x}^T\mathbf{x})^2}
+		\end{equation*}		
+		
 		Define $\mathbf{z} = \begin{bmatrix} \mathbf{y} \\ \mathbf{x} \end{bmatrix}$. Then, we can express $\nabla_{\mathbf{z}}{J}$ as follows:
 		
 		\begin{equation*}
@@ -118,14 +119,44 @@
 		\end{equation*}
 		
 		\begin{equation*}
-			\Rightarrow \frac{\partial{J}}{\partial{y_i}} = \frac{2y_i}{\sum_{i=1}^{N}x_i^2}\ \text{and}\ \frac{\partial{J}}{\partial{x_i}} = -\frac{2x_i\sum_{i=1}^{N}y_i^2}{\left(\sum_{i=1}^{N}x_i^2\right)^2}
+			\Rightarrow \frac{\partial{J}}{\partial{y_i}} = \frac{2y_i}{\sum_{j=1}^{N}x_j^2}\ \text{and}\ \frac{\partial{J}}{\partial{x_i}} = -\frac{2x_i\sum_{j=1}^{N}y_j^2}{\left(\sum_{j=1}^{N}x_j^2\right)^2}
 		\end{equation*}
 		
-		The network updates can be made using batch training or a single image at time. When using batch training, the gradient is averaged over all the training images before an update is made. Conversely, when using a single image at a time, the updates are made after each training image is processed using the gradient for that image. In either case, the gradient (or average gradient) can be computed with respect to each of the neural network's intermediate parameters using backpropogation. (Backpropogation computes the intermediate gradients by applying the chain rule). Once each of the gradients have been computed, gradient descent can be used to update each of the weights.
+		In each of the above expressions, the partial derivative of $J$ with respect to $y_i$ is dependent on $x_i$. Similarly, the partial derivative of $J$ with respect to $x_i$ is dependent on $y_i$. Since $x_i$ are $y_i$ are outputs from different training images, we are limited to batch training with samples from both classes.
+		
+		However, we can instead choose to maximize $\text{log}(J)$, which will implicitly maximize $J$. We can express $\text{log}(J)$ as follows:
+		
+		\begin{equation*}
+			\text{log}(J) = \text{log}\left(\frac{\mathbf{y}^T\mathbf{y}}{\mathbf{x}^T\mathbf{x}}\right) = \text{log}(\mathbf{y}^T\mathbf{y}) - \text{log}(\mathbf{x}^T\mathbf{x})
+		\end{equation*}
+		
+		The gradient of the $\text{log}(J)$ is given as follows:
+		
+		\begin{equation*}
+			\nabla_{\mathbf{y}}\text{log}({J}) = \frac{2\mathbf{y}}{\mathbf{y}^T\mathbf{y}} \ \text{and}\ \nabla_{\mathbf{x}}\text{log}({J}) = -\frac{2\mathbf{x}}{\mathbf{x}^T\mathbf{x}}
+		\end{equation*}
+		
+		Using the same expression for $\mathbf{z}$ as above, we get
+		
+		\begin{equation*}
+			\nabla_{\mathbf{z}}{\text{log}(J)} = \begin{bmatrix}
+				\frac{2\mathbf{y}}{\mathbf{y}^T\mathbf{y}} \\[3pt]
+				-\frac{2\mathbf{x}}{\mathbf{x}^T\mathbf{x}}
+			\end{bmatrix}
+		\end{equation*}
+		
+		\begin{equation*}
+			\Rightarrow \frac{\partial}{\partial{y_i}}\left\{\text{log}(J)\right\} = \frac{2y_i}{\sum_{j=1}^{N}y_j^2}\ \text{and}\ \frac{\partial}{\partial{x_i}}\left\{\text{log}(J)\right\} = -\frac{2x_i}{\sum_{j=1}^{N}x_j^2}
+		\end{equation*}
+		
+		Because we are maximizing the cost function, we need to apply gradient ascent instead of gradient descent. However, we can use gradient descent and achieve the same result if we instead minimize $-\text{log}(J)$. The resulting gradients are the same as above except for a sign flip ($\frac{\partial}{\partial{y_i}}\left\{-\text{log}(J)\right\} = -\frac{\partial}{\partial{y_i}}\left\{\text{log}(J)\right\}$.)
+		
+		Because our gradient terms are now only a function of $x_i$ or $y_i$, we can train the neural network in separates batches for class 1 and class 2. For each $x_i$ or $y_i$ in the batch, we can compute the gradient using $\frac{\partial}{\partial{y_i}}\left\{-\text{log}(J)\right\}$ for batches of class 1 and $\frac{\partial}{\partial{y_i}}\left\{-\text{log}(J)\right\}$ for batches of class 2. Next, we average the resulting gradient. Finally, using what is called backpropagation, we apply chain rule to find partial derivatives of $-\text{log}(J)$ with respect to each intermediate term. Each of these term can then be updated using gradient descent.
+		
+		When training with a single sample, the gradients reduce to $\frac{\partial}{\partial{y_i}}\left\{-\text{log}(J)\right\} = -\frac{2}{y_i}$ and $\frac{\partial}{\partial{x_i}}\left\{-\text{log}(J)\right\} = \frac{2}{x_i}$. Since we only have a single sample in this case, there is no need to average the resulting gradients. We can instead simply apply backpropagation and update each of the intermediate weights.
 		
 		\item Using the IRIS data set available at \href{https://en.wikipedia.org/wiki/IRIS_flower_data_set}{https://en.wikipedia.org/wiki/\\IRIS\_flower\_data\_set}, design a neural network classifier. The network should have two fully connected layers. The first layer should have 2 input neurons and 5 output neurons. The second layer should have 5 input neurons and 3 outputs neurons. For each input, the output should be a 3 element vector with "1" for the correct class, and "0" corresponding to the other two classes. You may use 40 samples from each class for training, and test with the remaining. Use the ReLu function as the nonlinearity between the layers.
 		
-		\pagebreak
 		For the computer exercise, the neural network required only 2 of the 4 features. Therefore, I had to chose 2 features from the input dataset. I chose features 3 and 4 because they resulted in better classification accuracy.
 		
 		\begin{enumerate}
