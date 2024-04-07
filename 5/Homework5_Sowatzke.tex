@@ -1,0 +1,74 @@
+\documentclass[fleqn]{article}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{amsmath, nccmath, bm}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{etoolbox}
+\usepackage[normalem]{ulem}
+\usepackage[hidelinks,colorlinks=true,urlcolor=blue,linkcolor=black]{hyperref}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{changepage}
+\usepackage{environ,capt-of}
+\usepackage{matlab-prettifier}
+
+\let\oldfigure\figure% Store original figure float environment
+\let\endoldfigure\endfigure
+\RenewEnviron{figure}[1][H]{% Update figure environment
+  %\par\vspace{\intextsep}% Assume in-text placement, so insert appropriate vertical spacing
+  \noindent
+  % \patchcmd{<cmd>}{<search>}{<replace>}{<success>}{<failure>}
+  \patchcmd{\BODY}{\caption}{\captionof{figure}}{}{}% Replace \caption with \captionof{figure} inside \BODY
+  % Set "figure"
+  \begin{minipage}{\linewidth}
+    \BODY
+  \end{minipage}
+  %\par\vspace{\intextsep}% Assume in-text placement, so insert appropriate vertical spacing
+}
+
+\makeatletter
+\begingroup
+  \catcode`\$=6 %
+  \catcode`\#=12 %
+  \gdef\href@split$1#$2#$3\\$4{%
+    \hyper@@link{$1}{$2}{\uline{$4}}% or \underline
+    \endgroup
+  }%
+\endgroup
+
+\newcommand{\zerodisplayskip}{
+	\setlength{\abovedisplayskip}{0pt}%
+	\setlength{\belowdisplayskip}{0pt}%
+	\setlength{\abovedisplayshortskip}{0pt}%
+	\setlength{\belowdisplayshortskip}{0pt}%
+	\setlength{\mathindent}{0pt}}
+	
+\title{Homework 5}
+\author{Owen Sowatzke}
+\date{April 12, 2024}
+
+\begin{document}
+
+	\offinterlineskip
+	\setlength{\lineskip}{12pt}
+	\zerodisplayskip
+	\maketitle
+	
+	\begin{enumerate}
+		\item Consider two 1D sequences $x(n)$ with 10 elements and $h(n)$ with 3 elements. Further, the sequence $x(n)$ can also be denoted by the vector $\mathbf{x}$ of length 10. Find a matrix $\mathbf{H}$ such that the product $\mathbf{y} = \mathbf{Hx}$ is identical to the correlation between $x(n)$ and $h(n)$, i.e. $y(n) = \sum_{k=1}^{10}{h(k+n-1)x(k)}$.
+		
+		\begin{enumerate}
+			\item [1)] What are the dimensions of $\mathbf{H}$ assuming that we are interested in values $y(n)$ for which all samples of $h(n)$ are overlapping with samples of $x(n)$?
+			
+			The full convolution output is $N + M - 1$ samples long, where $N$ is the length of $x(n)$ and $M$ is the length of $h(n)$. At the start and tail of the convolution output, there are $M - 1$ samples during which all samples $h(n)$ are not overlapping with samples of $x(n)$. As such, the length of the valid convolution output is:
+			
+			$N + M - 1 - 2(M - 1) = N + M - 1 - 2M + 2 = N - M + 1$
+			
+			$ = 10 - 3 + 1 = 8$ samples .
+			
+			Therefore, the matrix $\mathbf{H}$ must transform the $10 \times 1$ input vector $\mathbf{x}$ into an $8 \times 1$ output vector $\mathbf{y}$.  As such $\mathbf{H}$ must be an $8 \times 10$ matrix.
+			
+			\item [2)] 
+		\end{enumerate}
+	\end{enumerate}
+\end{document}
