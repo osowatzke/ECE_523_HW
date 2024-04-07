@@ -73,6 +73,8 @@
 			As stated above, $\mathbf{y}$ must be an $8 \times 1$ vector.
 			
 			\item [3)] What are the dimensions of $\mathbf{H}$ for the 2D case where $x(m,n)$ is a $10 \times 10$ image, and $h(m,n)$ is a $3 \times 3$ kernel, and the output is given by $y(m,n) = \sum{\sum{h(j+m-1,k+n-1)x(j,k)}}$? Assume that we are only considering values of $y(m,n)$ obtained when $h(m,n)$ is fully overlapped with $x(m,n)$. What is the size of $\mathbf{y}$ in this case?
+			
+			For the 2D case, each dimension of the output $y(n,m)$ will be $N - M + 1 = 8$ samples long. Therefore, the output $y(n,m)$ will be an $8 \times 8$ image. To perform 2D convolution using a matrix vector equation, $x(n,m)$ and $y(n,m)$ must be flattened to form vectors $\mathbf{x}$ and $\mathbf{y}$. After flattening, $\mathbf{x}$ will be $100 \times 1$ and $\mathbf{y}$ will be $64 \times 1$. Thus, the matrix $\mathbf{H}$ must be $64 \times 100$.
 		\end{enumerate}
 	\end{enumerate}
 \end{document}
