@@ -123,3 +123,12 @@ testImages = permute(testImages,[1 2 4 3]);
 YTest = classify(MNISTNet, testImages);
 accuracy = sum(YTest == testLabels)/numel(testLabels)
 CM=confusionmat(YTest,testLabels)
+
+% Nearest neighbor classifier
+X = reshape(trainingImages,[],size(trainingImages,4)).';
+Y = trainingLabels;
+Mdl = fitcknn(X,Y,'NumNeighbors',3,'Standardize',1)
+X = reshape(testImages,[],size(testImages,4)).';
+YTest = predict(Mdl, X);
+accuracy = sum(YTest == testLabels)/numel(testLabels)
+CM=confusionmat(YTest,testLabels)
