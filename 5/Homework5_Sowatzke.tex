@@ -135,6 +135,27 @@
 		\end{itemize}
 		
 		Note: You can use any programming language and libraries for this \newline problem.
+		
+		\pagebreak
+		
+		When evaluated on the test data set, the CNN classifier achieved 99.04\% accuracy. The CNN classification results are displayed in the following confusion matrix:
+		
+		\begin{figure}[H]
+			\centerline{\fbox{\includegraphics[width=0.95\textwidth]{cnn_confusion_matrix.png}}}
+			\caption{CNN Confusion Matrix}
+			\label{cnn_confusion_matrix}
+		\end{figure}
+		
+		When evaluated on the test data set, the KNN classifier achieved 94.46\% accuracy. The KNN classification results are displayed in the following confusion matrix:
+		
+		\begin{figure}[H]
+			\centerline{\fbox{\includegraphics[width=0.95\textwidth]{knn_confusion_matrix.png}}}
+			\caption{KNN Confusion Matrix for K=3}
+			\label{knn_confusion_matrix}
+		\end{figure}		
+	
+		The CNN classifier achieved better performance than the KNN classifier. It not only achieved a higher overall accuracy, but it also provided better performance for samples of all input classes. (This can be seen on the main diagonal of the confusion matrix.)
+	
 	\end{enumerate}
 	
 	\pagebreak
