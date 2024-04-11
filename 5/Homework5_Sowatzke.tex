@@ -82,11 +82,11 @@
 			
 			\begin{equation*}
 				\mathbf{H} = \begin{bmatrix}
-					h(3)   & h(2)   & h(1)   & 0      & \cdots & 0      & 0      & 0 \\
-					0      & h(3)   & h(2)   & h(1)   & \cdots & 0      & 0      & 0 \\
+					h(1)   & h(2)   & h(3)   & 0      & \cdots & 0      & 0      & 0 \\
+					0      & h(1)   & h(2)   & h(3)   & \cdots & 0      & 0      & 0 \\
 					\vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots \\
-					0      & 0      & 0      & 0      & \cdots & h(2)   & h(1)   & 0 \\
-					0      & 0      & 0      & 0      & \cdots & h(3)   & h(2)   & h(1)
+					0      & 0      & 0      & 0      & \cdots & h(2)   & h(3)   & 0 \\
+					0      & 0      & 0      & 0      & \cdots & h(1)   & h(2)   & h(3)
 				\end{bmatrix}
 			\end{equation*}
 				
@@ -108,11 +108,11 @@
 			
 			\begin{equation*}
 				\mathbf{H_i} = \begin{bmatrix}
-					h(3,i) & h(2,i) & h(1,i) & 0      & \cdots & 0      & 0      & 0 \\
-					0      & h(3,i) & h(2,i) & h(1,i) & \cdots & 0      & 0      & 0 \\
+					h(1,i) & h(2,i) & h(3,i) & 0      & \cdots & 0      & 0      & 0 \\
+					0      & h(1,i) & h(2,i) & h(3,i) & \cdots & 0      & 0      & 0 \\
 					\vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots \\
-					0      & 0      & 0      & 0      & \cdots & h(2,i) & h(1,i) & 0 \\
-					0      & 0      & 0      & 0      & \cdots & h(3,i) & h(2,i) & h(1,i)
+					0      & 0      & 0      & 0      & \cdots & h(2,i) & h(3,i) & 0 \\
+					0      & 0      & 0      & 0      & \cdots & h(1,i) & h(2,i) & h(3,i)
 				\end{bmatrix}
 			\end{equation*}
 			
@@ -146,7 +146,7 @@
 			\label{cnn_confusion_matrix}
 		\end{figure}
 		
-		When evaluated on the test data set, the KNN classifier achieved 94.46\% accuracy. The KNN classification results are displayed in the following confusion matrix:
+		When evaluated on the test data set, the KNN classifier achieved 97.06\% accuracy. The KNN classification results are displayed in the following confusion matrix:
 		
 		\begin{figure}[H]
 			\centerline{\fbox{\includegraphics[width=0.95\textwidth]{knn_confusion_matrix.png}}}
@@ -154,7 +154,7 @@
 			\label{knn_confusion_matrix}
 		\end{figure}		
 	
-		The CNN classifier achieved better performance than the KNN classifier. It not only achieved a higher overall accuracy, but it also provided better performance for samples of all input classes. (This can be seen on the main diagonal of the confusion matrix.)
+		The CNN classifier achieved better performance than the KNN classifier. It not only achieved a higher overall accuracy, but it also maintained or improved the classification accuracy across all input classes. (This can be seen by examining the main diagonal of the confusion matrix.)
 	
 	\end{enumerate}
 	

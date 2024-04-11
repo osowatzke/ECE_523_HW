@@ -153,7 +153,7 @@ X = reshape(trainingImages,[],size(trainingImages,4)).';
 Y = trainingLabels;
 
 % Create a KNN Classifer with K=3
-Mdl = fitcknn(X,Y,'NumNeighbors',3,'Standardize',1);
+Mdl = fitcknn(X,Y,'NumNeighbors',3);
 
 % Create an MxN array from the test images
 X = reshape(testImages,[],size(testImages,4)).';
