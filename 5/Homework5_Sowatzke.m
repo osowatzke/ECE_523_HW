@@ -36,24 +36,16 @@ middleLayers = [
     % Next add the ReLU layer:
     reluLayer()
 
-    % Follow it with a max pooling layer that has a 2x2 spatial
-    % pooling area and a stride of 2 pixels. This down-samples the
-    % data dimensions from 28x28 to 14x14
+    % Follow it with a max pooling layer that has a 3x3 spatial pooling area
+    % and a stride of 2 pixels. This down-samples the data dimensions from
+    % 28x28 to 14x14.
     maxPooling2dLayer(2, 'Stride', 2)
 
-    % Add a convolution layer with a symmetric padding of 3 pixels.
-    % The output of this layer is 16x16. Adding an additional pixel
-    % of symmetric padding to make the layer output a power of 2
-    convolution2dLayer(filterSize, numFilters, 'Padding', 3)
-
-    % Add another ReLU layer
+    % Repeat the 3 core layers to complete the middle of the network.
+    convolution2dLayer(filterSize, numFilters, 'Padding', 2)
     reluLayer()
-
-    % Add a max pooling layer to down-sample the data dimensions
-    % from 16x16 to 8x8
     maxPooling2dLayer(2, 'Stride', 2)
 
-    % Repeat the first layers twice to get an 2x2 output layer
     convolution2dLayer(filterSize, 2 * numFilters, 'Padding', 2)
     reluLayer()
     maxPooling2dLayer(2, 'Stride', 2)
@@ -96,7 +88,9 @@ layers = [
     finalLayers
 ];
 
-% Set the network training options
+% Set the network training options. Note that MaxEpochs has been
+% reduced from 50 to 5 to speed up runtime. The network converges
+% quickly so this has little effect on the final results.
 opts = trainingOptions('adam', ...
     'InitialLearnRate', 1e-3, ...
     'LearnRateSchedule', 'piecewise', ...
