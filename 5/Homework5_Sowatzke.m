@@ -88,9 +88,7 @@ layers = [
     finalLayers
 ];
 
-% Set the network training options. Note that MaxEpochs has been
-% reduced from 50 to 5 to speed up runtime. The network converges
-% quickly so this has little effect on the final results.
+% Set the network training options.
 opts = trainingOptions('adam', ...
     'InitialLearnRate', 1e-3, ...
     'LearnRateSchedule', 'piecewise', ...
@@ -105,12 +103,12 @@ opts = trainingOptions('adam', ...
 
 % A trained network is loaded from disk to save time when running
 % the example. Set this flag to true to train the network.
-doTraining = 0;
+doTraining = 1;
 
 if doTraining
     % Train a network.
-    % MNISTNet = trainNetwork(trainingImages, trainingLabels,...
-        % layers, opts);
+    MNISTNet = trainNetwork(trainingImages, trainingLabels,...
+        layers, opts);
     save('MNISTNet.mat', 'MNISTNet');
 else
     % Load pre-trained detector for the example.
