@@ -166,7 +166,7 @@ activationMaps = activations(net,trainingInput,'conv_3');
 % Flatten the activation maps
 activationMaps = reshape(activationMaps,400,[]);
 
-% Create distribution graphs for the first 5 features
+% Create histograms for the first 5 features
 figure(3)
 clf;
 t = tiledlayout(2,3);
@@ -190,8 +190,21 @@ end
 fprintf('\n');
 
 % Compute the covariance matrix
-C = cov(activationMaps(1:5,:).');
+Sigma = cov(activationMaps(1:5,:).');
 
 % Display the covariance matrix
 disp('Covariance Matrix:')
-disp(C)
+disp(Sigma)
+
+% Generate Gaussian Random Variable with given means and covariance
+X = mvnrnd(mu,Sigma,size(activationMaps,2)).';
+
+% Create histograms for the generated data
+figure(4)
+clf;
+t = tiledlayout(2,3);
+for i = 1:5
+    nexttile;
+    histogram(X(i,:));
+end
+title(t,'Histograms for Generated Data')
