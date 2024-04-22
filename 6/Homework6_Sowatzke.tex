@@ -114,7 +114,7 @@
 				\label{mse_per_digit_test}
 			\end{figure}
 			
-			1 achieves the lowest MSE for both the training and test sets at 315.26 and 319.65 respectively.
+			The digit 1 achieves the lowest MSE for both the training and test sets. For the training set it has an MSE 315.26, and for the test set, it has an MSE of 319.65.
 			
 			\item[4)] The dimensions of the embedded space are 5 x 5 x 16. Obtain the activations for this layer using all the training images and flatten each of them into vectors of length 400. Show the histograms of the first five features.
 			
@@ -152,4 +152,14 @@ to match.
 			The histograms of the measured data are slightly skewed and contain tight clusters of data. This is not replicated in the histograms of the generated data. However, the resulting histograms still roughly approximate those of the measured data.	
 		\end{enumerate}
 	\end{enumerate}
+	
+	\pagebreak
+	\appendix
+	\section{Source Code}
+	\label{source_code}
+	\lstset{style=Matlab-editor,basicstyle=\ttfamily\footnotesize}
+	\lstinputlisting{Homework6_Sowatzke.m}
+	\lstinputlisting{loadMNISTData.m}
+	\lstinputlisting{readBinaryFile.m}
+	\raggedbottom
 \end{document}

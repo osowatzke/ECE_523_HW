@@ -3,7 +3,7 @@ clear;
 close all;
 
 % Flag specifies whether to do training or not
-doTraining = false;
+doTraining = true;
 
 %% Load training data
 [trainingInput, trainingLabels] = loadMNISTData('train');
@@ -20,10 +20,14 @@ layers = [
     batchNormalizationLayer;
     convolution2dLayer(3,64,'Padding',1);
     reluLayer;
-    maxPooling2dLayer(2,'Stride',2,'HasUnpoolingOutputs',true,'Name','mpool1');
+    maxPooling2dLayer(2,'Stride',2,'HasUnpoolingOutputs',true,...
+        'Name','mpool1');
+
     convolution2dLayer(3,128,'Padding',1);
     reluLayer;
-    maxPooling2dLayer(3,'Stride',3,'Padding',1,'HasUnpoolingOutputs',true,'Name','mpool2');
+    maxPooling2dLayer(3,'Stride',3,'Padding',1,...
+        'HasUnpoolingOutputs',true,'Name','mpool2');
+
     convolution2dLayer(3,16,'Padding',1);
     transposedConv2dLayer(3,128,'Cropping',1);
     reluLayer;
@@ -63,6 +67,7 @@ trainingOptions = trainingOptions('adam', ...
     'Plots','training-progress',...
     'Verbose', true);
 
+% Train network or load pretrained network from .mat file
 if doTraining
     net = trainNetwork(trainingInput,trainingOutput,lgraph,trainingOptions);
 else
